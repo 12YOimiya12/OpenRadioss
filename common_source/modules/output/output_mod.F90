@@ -334,7 +334,10 @@
         end type output_
 
 
-        type(output_),pointer :: output_ptr      ! pointer to output structure (need for arret)
+        ! pointer to output structure (need for arret). Initialised so that
+        ! ASSOCIATED() reports a defined result when ARRET runs before
+        ! RADIOSS2 has had a chance to point it at the output structure.
+        type(output_),pointer :: output_ptr => null()
 
 
       contains

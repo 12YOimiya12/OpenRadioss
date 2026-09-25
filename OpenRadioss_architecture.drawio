@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="OpenRadioss 系统架构" id="openradioss-arch">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1280" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ============ Layer A: Inputs / User Models ============ -->
+        <mxCell id="layerA" value="① 输入层 · 用户模型 (Inputs / User Model)" style="swimlane;startSize=32;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=14;fontColor=#333333;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="in_rad" value=".rad&#10;原生 Radioss 输入卡 (Native deck)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="layerA">
+          <mxGeometry x="30" y="60" width="250" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="in_key" value=".key / .k&#10;LS-Dyna 格式 (Starter 原生支持)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="layerA">
+          <mxGeometry x="315" y="60" width="250" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="in_inp" value=".inp&#10;Abaqus / CSV 等格式" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="layerA">
+          <mxGeometry x="600" y="60" width="250" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="inp2rad" value="inp2rad&#10;转换器 (.inp → .rad)&#10;外部工具" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#333333;fontSize=12;" vertex="1" parent="layerA">
+          <mxGeometry x="885" y="60" width="290" height="76" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Layer B: Starter / Pre-processing ============ -->
+        <mxCell id="layerB" value="② 预处理 · Starter (前处理, 读取输入卡并生成模型)" style="swimlane;startSize=32;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;fontColor=#1a1a3c;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="250" width="1220" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="reader" value="Input Reader&#10;读卡 / 格式解析&#10;(reader/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=12;" vertex="1" parent="layerB">
+          <mxGeometry x="30" y="60" width="270" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="starter_main" value="Starter 执行体&#10;构建模型 / 单元·材料·接口&#10;(starter/source)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=12;fontStyle=1;" vertex="1" parent="layerB">
+          <mxGeometry x="360" y="60" width="290" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="starter_spmd" value="SPMD / 网格域分解&#10;(starter/source/spmd)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=12;" vertex="1" parent="layerB">
+          <mxGeometry x="710" y="60" width="270" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="hmcfg" value="HyperMesh 卡片配置&#10;(hm_cfg_files/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#333333;fontSize=12;" vertex="1" parent="layerB">
+          <mxGeometry x="30" y="178" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="extlib" value="EXTLIB 第三方依赖&#10;(EXTLIB_VERSION.json)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#333333;fontSize=12;" vertex="1" parent="layerB">
+          <mxGeometry x="360" y="178" width="290" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="starter_out" value="写出: 各域重启文件 + 引擎输入卡&#10;(_NNNN.rst / fixed.inc / *_run.inc)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3c1a;fontSize=12;fontStyle=1;" vertex="1" parent="layerB">
+          <mxGeometry x="710" y="178" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="stub_start" value="stub/ (MPI/OpenMP 桩实现, 单进程)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#333333;fontSize=11;" vertex="1" parent="layerB">
+          <mxGeometry x="1020" y="178" width="160" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Layer C: Shared common_source ============ -->
+        <mxCell id="layerC" value="③ 共享核心库 · common_source (Starter 与 Engine 共用)" style="swimlane;startSize=32;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=14;fontColor=#2a1a3c;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="540" width="1220" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_comm" value="comm&#10;通信 / 公共变量" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="30" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_input" value="input&#10;输入 / INI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="205" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_interf" value="interf&#10;接口 (接触)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="380" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_eos" value="eos&#10;状态方程" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="555" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_mod" value="modules&#10;Fortran 模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="730" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_sortie" value="sortie&#10;输出辅助" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="905" y="60" width="150" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_other" value="tools / fail / fxbody / linearalgebra / output / qa / includes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#2a1a3c;fontSize=11;" vertex="1" parent="layerC">
+          <mxGeometry x="30" y="140" width="1150" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cs_note" value="common_source 以共享库形式被 Starter 与 Engine 分别链接, 提供公共常量、接口、工具与输出辅助" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;dashed=1;fontSize=11;fontColor=#4a2a5c;align=left;spacingLeft=8;" vertex="1" parent="layerC">
+          <mxGeometry x="30" y="200" width="1150" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Layer D: Engine / Solver ============ -->
+        <mxCell id="layerD" value="④ 求解核心 · Engine (显式有限元求解器 · 中心差分积分)" style="swimlane;startSize=32;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;fontColor=#1a1a3c;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="790" width="1220" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_main" value="Engine 主程序&#10;RADIOSS2 → RESOL 时间循环&#10;(engine/source/engine)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#3c2a1a;fontSize=12;fontStyle=1;" vertex="1" parent="layerD">
+          <mxGeometry x="30" y="60" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_step" value="时间步 / 通用控制&#10;time_step · general_controls · system" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="370" y="60" width="260" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_elems" value="单元计算&#10;elements (壳/体/梁/弹簧)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="670" y="60" width="250" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_mat" value="材料库 / EOS / 失效&#10;materials · eos · fail" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="960" y="60" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_interf" value="接口 / 接触&#10;interfaces · constraints" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="30" y="182" width="300" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_ale" value="ALE / 流体 / 气囊 / 多相&#10;ale · fluid·multifluid · airbag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="370" y="182" width="260" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_loads" value="载荷 / 边界条件 / 刚体&#10;loads · boundary_conditions · assembly·coupling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="670" y="182" width="250" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_impl" value="隐式 / AMS&#10;implicit · ams" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#3c3a1a;fontSize=11;" vertex="1" parent="layerD">
+          <mxGeometry x="960" y="182" width="220" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_mpi" value="MPI / SPMD 并行&#10;mpi · spmd · groups&#10;域间交换 (frontier 节点)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#3c2a1a;fontSize=11;fontStyle=1;" vertex="1" parent="layerD">
+          <mxGeometry x="30" y="280" width="560" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_omp" value="OpenMP 线程并行 (域内单元循环)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#3c2a1a;fontSize=11;fontStyle=1;" vertex="1" parent="layerD">
+          <mxGeometry x="620" y="280" width="300" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="eng_out" value="输出: 动画 / 时程 / 重启&#10;(output)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3c1a;fontSize=11;fontStyle=1;" vertex="1" parent="layerD">
+          <mxGeometry x="950" y="280" width="230" height="76" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Layer E: Outputs / Post-processing ============ -->
+        <mxCell id="layerE" value="⑤ 输出与后处理 · Output &amp; Post-processing" style="swimlane;startSize=32;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;fontColor=#1a3c1a;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1140" width="1220" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="anim" value="动画文件 / Animation (.anim)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3c1a;fontSize=12;" vertex="1" parent="layerE">
+          <mxGeometry x="30" y="70" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="th_out" value="时程文件 / Time history" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3c1a;fontSize=12;" vertex="1" parent="layerE">
+          <mxGeometry x="360" y="70" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rst_out" value="重启文件 / Restart (_NNNN.rst)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1a3c1a;fontSize=12;fontStyle=1;" vertex="1" parent="layerE">
+          <mxGeometry x="690" y="70" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="vtk" value="anim_to_vtk&#10;动画 → VTK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=12;" vertex="1" parent="layerE">
+          <mxGeometry x="30" y="176" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="csv" value="th_to_csv&#10;时程 → CSV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a3c;fontSize=12;" vertex="1" parent="layerE">
+          <mxGeometry x="360" y="176" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="d3plot" value="d3plot 转换&#10;(Vortex-CAE 外部)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" vertex="1" parent="layerE">
+          <mxGeometry x="690" y="176" width="270" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Layer F: Build & QA ============ -->
+        <mxCell id="layerF" value="⑥ 构建与质量 · Build &amp; QA" style="swimlane;startSize=32;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=14;fontColor=#3c3a1a;html=1;rounded=0;swimlaneLine=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="1410" width="1220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="cmake" value="CMake 构建&#10;(build=starter / engine / both)&#10;CMakeLists.txt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#3c3a1a;fontSize=12;fontStyle=1;" vertex="1" parent="layerF">
+          <mxGeometry x="30" y="70" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="compilers" value="编译工具链&#10;CMake_Compilers · Compiling_tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#3c3a1a;fontSize=12;" vertex="1" parent="layerF">
+          <mxGeometry x="360" y="70" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qa" value="质量与 CI&#10;qa-tests · .github/workflows" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#3c3a1a;fontSize=12;" vertex="1" parent="layerF">
+          <mxGeometry x="690" y="70" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="pack" value="容器 / 部署&#10;Apptainer · scripts.tar · doc/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#3c3a1a;fontSize=12;" vertex="1" parent="layerF">
+          <mxGeometry x="1020" y="70" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ============ Edges: data flow (cross-layer) ============ -->
+        <mxCell id="e_rad" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#666666;dashed=1;" edge="1" parent="1" source="in_rad" target="reader">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_key" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#666666;dashed=1;" edge="1" parent="1" source="in_key" target="reader">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inp" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#666666;dashed=1;" edge="1" parent="1" source="in_inp" target="inp2rad">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_inp2rad" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#666666;dashed=1;" edge="1" parent="1" source="inp2rad" target="reader">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rdst" value="读入" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="reader" target="starter_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_hmmock" value="图形前端" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#9673a6;dashed=1;" edge="1" parent="1" source="hmcfg" target="starter_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_extlib" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#9673a6;dashed=1;" edge="1" parent="1" source="extlib" target="starter_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_spmd" value="分解" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="starter_main" target="starter_spmd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_stub" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#9673a6;dashed=1;" edge="1" parent="1" source="stub_start" target="starter_spmd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_spmdout" value="写出模型" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="starter_spmd" target="starter_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_shared" value="链接共享库" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#9673a6;dashed=1;" edge="1" parent="1" source="layerC" target="starter_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_shared_e" value="链接共享库" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#9673a6;dashed=1;" edge="1" parent="1" source="layerC" target="eng_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_restart" value="读取重启 + 输入卡" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="starter_out" target="eng_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_engstep" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_step">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_engelems" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_elems">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_engmat" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_mat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_elemsmat" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_elems" target="eng_mat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_interf" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_interf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ale" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_ale">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_loads" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="eng_main" target="eng_loads">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_impl" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d6b656;" edge="1" parent="1" source="eng_main" target="eng_impl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mpi" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d79b00;" edge="1" parent="1" source="eng_main" target="eng_mpi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_omp" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d79b00;" edge="1" parent="1" source="eng_main" target="eng_omp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mpiomp" value="域间交换" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d79b00;" edge="1" parent="1" source="eng_mpi" target="eng_omp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mout" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="eng_main" target="eng_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_anim" value="写动画" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="eng_out" target="anim">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_th" value="写时程" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="eng_out" target="th_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rst" value="写重启" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#82b366;" edge="1" parent="1" source="eng_out" target="rst_out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_vtk" value="转换" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="anim" target="vtk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_csv" value="转换" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#6c8ebf;" edge="1" parent="1" source="th_out" target="csv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_d3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#666666;dashed=1;" edge="1" parent="1" source="anim" target="d3plot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_build_s" value="构建 Starter" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d6b656;dashed=1;" edge="1" parent="1" source="cmake" target="starter_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_build_e" value="构建 Engine" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d6b656;dashed=1;" edge="1" parent="1" source="cmake" target="eng_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_qa" value="CI 测试" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d6b656;dashed=1;" edge="1" parent="1" source="qa" target="eng_main">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_compilers" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;strokeColor=#d6b656;dashed=1;" edge="1" parent="1" source="compilers" target="cmake">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

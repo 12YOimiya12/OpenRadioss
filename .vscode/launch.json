@@ -1,0 +1,148 @@
+{
+  // ---------------------------------------------------------------------------
+  // OpenRadioss - launch configurations for the native Windows/MinGW build.
+  //
+  // Built artefacts: exec/starter_win64_gf.exe and exec/engine_win64_gf.exe.
+  // A run needs three things that the plain environment does not provide:
+  //
+  //   1. MinGW runtime DLLs (libgfortran, libgomp, libstdc++, libwinpthread)
+  //   2. hm_reader_win64.dll and libapr-1.dll, which the starter loads at run
+  //      time to read .rad decks
+  //   3. RAD_CFG_PATH, pointing at hm_cfg_files/, without which the reader
+  //      refuses to start
+  //
+  // All three are wired up in "environment" below, so the configurations work
+  // from a fresh editor without any shell setup.
+  //
+  // If MINGW_ROOT or the repository moves, update the values in
+  // "environment" and "miDebuggerPath" below.
+  //
+  // The binaries are built -O3 without -g, so the debugger can name functions
+  // in a backtrace but cannot show source lines. Build with
+  // ./build_mingw64.sh <target> after setting -Ddebug=1 for line-level
+  // debugging.
+  // ---------------------------------------------------------------------------
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Starter on the bundled smoke test - the quickest way to confirm the
+      // build is healthy. Reads TWISBEAM_0000.rad and writes the restart file
+      // the engine configuration then consumes.
+      "name": "Starter: SMOKE_TEST",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/exec/starter_win64_gf.exe",
+      "args": ["-i", "TWISBEAM_0000.rad"],
+      "cwd": "${workspaceFolder}/qa-tests/run_smoke",
+      "environment": [
+        { "name": "PATH", "value": "G:\\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\\mingw64\\bin;${workspaceFolder}\\extlib\\build_mingw64;${env:PATH}" },
+        { "name": "RAD_CFG_PATH", "value": "${workspaceFolder}/hm_cfg_files" }
+      ],
+      "externalConsole": false,
+      "stopAtEntry": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "G:/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0/mingw64/bin/gdb.exe",
+      "setupCommands": [
+        { "description": "启用 pretty-printing", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "关闭分页输出", "text": "set pagination off", "ignoreFailures": true },
+        { "description": "关闭交互确认", "text": "set confirm off", "ignoreFailures": true }
+      ]
+    },
+    {
+      // Engine on the restart file the Starter configuration above produced.
+      // Run the Starter configuration first, or this fails with
+      // "restart file not found".
+      "name": "Engine: SMOKE_TEST",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/exec/engine_win64_gf.exe",
+      "args": ["-i", "TWISBEAM_0001.rad"],
+      "cwd": "${workspaceFolder}/qa-tests/run_smoke",
+      "environment": [
+        { "name": "PATH", "value": "G:\\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\\mingw64\\bin;${workspaceFolder}\\extlib\\build_mingw64;${env:PATH}" },
+        { "name": "RAD_CFG_PATH", "value": "${workspaceFolder}/hm_cfg_files" }
+      ],
+      "externalConsole": false,
+      "stopAtEntry": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "G:/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0/mingw64/bin/gdb.exe",
+      "setupCommands": [
+        { "description": "启用 pretty-printing", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "关闭分页输出", "text": "set pagination off", "ignoreFailures": true },
+        { "description": "关闭交互确认", "text": "set confirm off", "ignoreFailures": true }
+      ]
+    },
+    {
+      // Starter on your own model. Prompts for the deck's directory and file
+      // name, so the same configuration serves every case.
+      "name": "Starter: 任意算例 (prompt)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/exec/starter_win64_gf.exe",
+      "args": ["-i", "${input:starterDeck}"],
+      "cwd": "${input:runDir}",
+      "environment": [
+        { "name": "PATH", "value": "G:\\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\\mingw64\\bin;${workspaceFolder}\\extlib\\build_mingw64;${env:PATH}" },
+        { "name": "RAD_CFG_PATH", "value": "${workspaceFolder}/hm_cfg_files" }
+      ],
+      "externalConsole": false,
+      "stopAtEntry": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "G:/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0/mingw64/bin/gdb.exe",
+      "setupCommands": [
+        { "description": "启用 pretty-printing", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "关闭分页输出", "text": "set pagination off", "ignoreFailures": true },
+        { "description": "关闭交互确认", "text": "set confirm off", "ignoreFailures": true }
+      ]
+    },
+    {
+      // Engine on your own model. nthread matches the SMP-only build
+      // (MPI=smp): there is no MPI rank to widen, only OpenMP threads.
+      "name": "Engine: 任意算例 (prompt)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/exec/engine_win64_gf.exe",
+      "args": ["-i", "${input:engineDeck}", "-nthread", "${input:nthread}"],
+      "cwd": "${input:runDir}",
+      "environment": [
+        { "name": "PATH", "value": "G:\\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\\mingw64\\bin;${workspaceFolder}\\extlib\\build_mingw64;${env:PATH}" },
+        { "name": "RAD_CFG_PATH", "value": "${workspaceFolder}/hm_cfg_files" }
+      ],
+      "externalConsole": false,
+      "stopAtEntry": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "G:/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0/mingw64/bin/gdb.exe",
+      "setupCommands": [
+        { "description": "启用 pretty-printing", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "关闭分页输出", "text": "set pagination off", "ignoreFailures": true },
+        { "description": "关闭交互确认", "text": "set confirm off", "ignoreFailures": true }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "runDir",
+      "type": "promptString",
+      "description": "计算目录 (working directory - 输入文件所在目录，输出也写在这里)",
+      "default": "${workspaceFolder}/qa-tests/run_smoke"
+    },
+    {
+      "id": "starterDeck",
+      "type": "promptString",
+      "description": "Starter 输入文件 (前处理输入，通常是 <model>_0000.rad)",
+      "default": "TWISBEAM_0000.rad"
+    },
+    {
+      "id": "engineDeck",
+      "type": "promptString",
+      "description": "Engine 输入文件 (求解输入，通常是 <model>_0001.rad)",
+      "default": "TWISBEAM_0001.rad"
+    },
+    {
+      "id": "nthread",
+      "type": "promptString",
+      "description": "OpenMP 线程数 (-nthread)",
+      "default": "4"
+    }
+  ]
+}

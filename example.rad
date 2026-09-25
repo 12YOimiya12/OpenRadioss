@@ -1,0 +1,88 @@
+# RADIOSS STARTER example: a fixed-edge elastic shell
+# Units: kg, m, s, N, Pa
+/BEGIN
+example_shell
+      2024         0
+                  kg                   m                   s
+                  kg                   m                   s
+
+/TITLE
+Four-node square shell with a ramped load
+
+/ANALY
+#    N2D3D             IPARITH      ISUB
+         0                   0         0
+
+/DEF_SHELL
+#   ISHELL    ISMSTR    ITHICK     IPLAS   ISTRAIN                        I_SH3N     IDRIL
+         0         0         0         0         0                             1         0
+
+/IOFLAG
+#     IPRI               IGTYP     IOUTP    IOUTYY   IROOTYY     IDROT
+         5                   0         0         0         0         0
+
+/MAT/ELAST/1
+Steel (elastic)
+#        Init. dens.          Ref. dens.
+              7800                   0
+#                  E                  nu
+               2.1E11                  .3
+
+/NODE
+#     node_ID                   X                   Y                   Z
+         1                   0                   0                   0
+         2                   1                   0                   0
+         3                   1                   1                   0
+         4                   0                   1                   0
+
+/PART/1
+Square shell
+#    prop_ID              mat_ID              sens_ID
+         1                   1                   0
+
+/SHELL/1
+#   shell_ID              node_1              node_2              node_3              node_4
+         1                   1                   2                   3                   4
+
+/PROP/TYPE1/1
+Shell property
+#   Ishell    Ismstr    Ish3n    Idrill                            P_thick_fail
+         0         0         0         0                                       0
+#                 hm                  hf                  hr                  dm                  dn
+               1E-15               1E-15               1E-15                   0                   0
+#        N   Istrain               Thick              Ashear              Ithick     Iplas
+         0         0                 0.001                   0                   0         0
+
+/GRNOD/NODE/1
+Fixed edge nodes
+         1         4
+
+/BCS/1
+Fixed edge
+#  Tra rot  skew_ID  grnod_ID
+   111 111         0         1
+
+/FUNCT/1
+Ramped load
+#                  X                   Y
+                   0                   0
+                 0.1                   1
+
+/GRNOD/NODE/2
+Loaded edge nodes
+         2         3
+
+/CLOAD/1
+Downward load
+#funct_IDT       Dir   skew_ID sensor_ID  grnod_ID                       Ascalex             Fscaley
+         1         Z         0         0         2                             1                -1000
+
+/TH/NODE/2
+Loaded node history
+#     var1      var2      var3      var4      var5      var6      var7      var8      var9     var10
+DEF
+#    NODid     Iskew                                           NODname
+         2         0
+         3         0
+
+/END

@@ -501,7 +501,11 @@ C-----------------------------------------------
 C -----------------------------------------------
 C TH FILES
 C -----------------------------------------------
-       IF (ISPMD == 0) THEN
+C     OUTPUT_PTR is associated in RADIOSS2 (engine/source/engine/radioss2.F),
+C     so on the exit paths taken before that - e.g. ARRET(7) from the command
+C     line check in EXECARGCHECK - there is no output structure to close and
+C     dereferencing the pointer would fault.
+       IF (ISPMD == 0 .AND. ASSOCIATED(OUTPUT_PTR)) THEN
 
             ! Close the TH file
             IF (OUTPUT_PTR%TH%TH_WRITE_TYPE == 3)THEN

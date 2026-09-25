@@ -22,6 +22,8 @@ qa-tests/scripts/Screen_Output
 qa-tests/scripts/*.tmp
 qa-tests/scripts/my_results
 qa-tests/ctest_*
+qa-tests/run_smoke
+qa-tests/run_dyna
 engine/extlib/MUMPS*
 engine/extlib/lapack*
 engine/extlib/scalap*
@@ -42,3 +44,13 @@ extlib.zip
 *.s
 *.backup
 .code_index.db*
+
+# 本地构建产物(CMake/Ninja),不要同步到云端
+/build/
+/build_mingw64*/
+
+# 仿真运行输出(.rst / .anim / A0NN 动画),不要同步到云端
+/BirdStrike/run/
+/BirdStrike/run_h3d/
+/airbag/run/
+

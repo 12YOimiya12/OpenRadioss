@@ -13,9 +13,14 @@ project (Radioss_Starter)
 # --------------------------
 if (arch STREQUAL "win64")
    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-   set(PYTHON_EXEC "python")
+   set(PYTHON_EXEC_DEFAULT "python")
 else()
-   set(PYTHON_EXEC "python3")
+   set(PYTHON_EXEC_DEFAULT "python3")
+endif()
+
+# Allow -DPYTHON_EXEC=<interpreter> to override the platform default.
+if (NOT DEFINED PYTHON_EXEC)
+   set(PYTHON_EXEC "${PYTHON_EXEC_DEFAULT}")
 endif()
 
 # Language settings & Compiler Settings

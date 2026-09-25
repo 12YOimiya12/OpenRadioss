@@ -29,6 +29,8 @@
 #include <string>
 #include <tuple>
 #include <algorithm>    // std::remove
+#include <cstdint>      // uint16_t: pulled in transitively by MSVC, not by GCC
+#include <cstddef>      // size_t
 using std::cout;
 using std::endl;
 

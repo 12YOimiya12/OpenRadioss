@@ -1,0 +1,419 @@
+########################################
+#       ENGINE - GFortran / MinGW-w64 (Windows)
+########################################
+#
+# Native Windows build using MinGW-w64 gfortran/gcc/g++.
+#
+# Third-party libraries used (all built with the same MinGW toolchain):
+#   extlib/build_mingw64/lib/libmd5.a          - from MD5 (L. Peter Deutsch, RFC 1321)
+#   extlib/build_mingw64/lib/liblapack_mingw.a - minimal LAPACK 3.10.0 closure (DGESV/DGEEV/DGEMM)
+#   <mingw>/x86_64-w64-mingw32/lib/libz.a      - zlib shipped with MinGW-w64
+#
+# h3d reader/writer are loaded at runtime (DLLs in extlib/h3d/lib/win64), not linked.
+#
+
+# Executable name
+# ---------------
+
+
+# General machine flag setting
+set ( cppmach "-DCPP_mach=CPP_p4win64" )
+set ( cpprel  "-DCPP_rel=00" )
+
+set( unused_dummy_arg "" )
+
+# MPI
+# ---
+if ( DEFINED MPI )
+  set ( mpiver "${MPI}" )
+  if ( mpiver STREQUAL "smp")
+     set (mpi_suf "" )
+     set (mpi_flag "" )
+  else()
+    message( FATAL_ERROR "\n ERROR : -mpi=${mpiver} not available for Windows/MinGW build; use -mpi=smp\n\n" )
+  endif()
+endif ()
+
+set ( RELNAME ${arch}${mpi_suf}  )
+
+
+# Third party libraries
+# ---------------------
+# Root of the MinGW-w64 toolchain (override with the MINGW_ROOT env var).
+# The compiler path contains "..", so deriving the root with
+# get_filename_component on ${CMAKE_Fortran_COMPILER} does not collapse it
+# reliably - set the default explicitly instead.
+set ( mingw_root "$ENV{MINGW_ROOT}" )
+if ( "${mingw_root}" STREQUAL "" )
+   set ( mingw_root "G:/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0/mingw64" )
+endif()
+message (STATUS "MinGW root: ${mingw_root}")
+
+# H3D
+set (h3d_inc "-I${source_directory}/../extlib/h3d/includes")
+
+# LAPACK (minimal closure built with this MinGW toolchain)
+set (lapack_lib "${source_directory}/../extlib/build_mingw64/lib/liblapack_mingw.a")
+
+# ZLIB: zlib.h comes from extlib, the static library from MinGW-w64
+set (zlib_inc "-I${source_directory}/../extlib/zlib/win64_mt/include")
+set (zlib_lib "${mingw_root}/x86_64-w64-mingw32/lib/libz.a")
+
+# MD5 (built with this MinGW toolchain)
+set (md5_inc "-I${source_directory}/../extlib/md5/include")
+set (md5_lib "${source_directory}/../extlib/build_mingw64/lib/libmd5.a")
+
+# METIS 5.1.x (thread-safe kernel), merged with GKlib
+set (metis_lib "${source_directory}/../extlib/build_mingw64/lib/libmetis_mingw.a")
+
+# Archiver / ranlib flags for the MinGW toolchain
+set(CMAKE_Fortran_CREATE_STATIC_LIBRARY "<CMAKE_AR> rcs <TARGET> <LINK_FLAGS> <OBJECTS>")
+set(CMAKE_C_CREATE_STATIC_LIBRARY "<CMAKE_AR> rcs <TARGET> <LINK_FLAGS> <OBJECTS>")
+set(CMAKE_CXX_CREATE_STATIC_LIBRARY "<CMAKE_AR> rcs <TARGET> <LINK_FLAGS> <OBJECTS>")
+
+
+# compiler Flags
+# --------------
+set (CMAKE_Fortran_FLAGS_DEBUG " " )
+set (CMAKE_Fortran_FLAGS_RELEASE " " )
+
+set (CMAKE_C_FLAGS_DEBUG " " )
+set (CMAKE_C_FLAGS_RELEASE " " )
+
+set (CMAKE_CPP_FLAGS_DEBUG " " )
+set (CMAKE_CPP_FLAGS_RELEASE " " )
+
+set (CMAKE_CXX_FLAGS_DEBUG " " )
+set (CMAKE_CXX_FLAGS_RELEASE " " )
+
+# Single / Double Precision
+# -------------------------
+if (precision STREQUAL "sp")
+  set (precision_flag "-DMYREAL4")
+else (precision STREQUAL "sp")
+  set (precision_flag "-DMYREAL8")
+endif (precision STREQUAL "sp")
+
+# Modules directory
+set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/CMakeFiles/modules )
+set(CMAKE_Fortran_MODDIR_FLAG "-J" )
+
+message (STATUS "modules: ${CMAKE_Fortran_MODULE_DIRECTORY}")
+
+#Generic Compilation flags
+###########################
+
+if ( NOT DEFINED WITH_LINEAR_ALGEBRA)
+set ( wo_linalg "-DWITHOUT_LINALG" )
+endif()
+
+# OpenMP parallelization
+set( OPENMP "-fopenmp" )
+
+# gfortran portability flags (fixed-form legacy code)
+# Portability flags for this legacy fixed-form code base.
+# NOTE: not gated on CMAKE_C_COMPILER_VERSION - that variable is not yet set
+# when the Fortran compiler check runs, which silently dropped these flags
+# and made gfortran reject the BOZ literals used throughout the sources.
+set( portability "-fallow-argument-mismatch -fallow-invalid-boz -std=legacy")
+
+set ( opt_flag " ${wo_linalg} -DCOMP_GFORTRAN=1 -ffp-contract=off -frounding-math ${OPENMP} " )
+
+# LAPACK is linked separately: expose the lapack include-less symbols only
+set( linalg_flag "" )
+
+if ( sanitize STREQUAL "1" )
+set( FSANITIZE "-fsanitize=address -fsanitize=undefined  -fsanitize=bounds-strict -DSANITIZE")
+endif()
+
+set(opt_flag "${opt_flag} ${linalg_flag}")
+
+# This works in both CMake 2.8 and 3.28
+if(CMAKE_COMPILER_IS_GNUCXX)
+    execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion
+                    OUTPUT_VARIABLE GCC_VERSION
+                    OUTPUT_STRIP_TRAILING_WHITESPACE)
+    if(GCC_VERSION MATCHES "^(11|15|16)\\.")
+        set(error_uninitialized " -Werror=maybe-uninitialized")
+    endif()
+endif()
+
+# NOTE: the strict -Werror= set used on Linux is left out here on purpose.
+# MinGW-w64 gfortran 15 emits additional warnings for this legacy fixed-form
+# code base that would turn into hard errors with -Werror.
+set( strict "" )
+set( strict_wo_mpi "" )
+
+
+if ( debug STREQUAL "1" )
+# Fortran
+
+set( legacy_flags "${FSANITIZE} -Wall -O0 -g -fdec-math -fbacktrace ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${portability} ${mpi_flag} ${ADF} ")
+
+set( unused_dummy_arg_strict_flags "${FSANITIZE} -Wall -Warray-temporaries -O0 -g -fdec-math -fbacktrace ${strict_wo_mpi} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}")
+
+set_source_files_properties(${source_files}  PROPERTIES COMPILE_FLAGS "${FSANITIZE} -Wall -Warray-temporaries -O0 -g -fdec-math -fbacktrace ${strict} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}" )
+
+# C source files
+set_source_files_properties(${c_source_files} PROPERTIES COMPILE_FLAGS "${FSANITIZE} ${h3d_inc} ${zlib_inc} ${md5_inc} ${precision_flag}  ${cppmach} ${cpprel} -O0 -g  ${OPENMP}" )
+
+# CXX source files
+set_source_files_properties(${cpp_source_files} PROPERTIES COMPILE_FLAGS "${FSANITIZE} ${h3d_inc} ${zlib_inc} ${md5_inc} ${precision_flag} ${cppmach} ${cpprel}  -O0 -g ${OPENMP} -std=c++14 ${mpi_flag}" )
+
+elseif ( debug STREQUAL "analysis" )
+
+set( legacy_flags " ${FSANITIZE} -Wall -O0 -g -fdec-math -fbacktrace ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${portability} ${mpi_flag} ${ADF}")
+
+set_source_files_properties( ${source_files}  PROPERTIES COMPILE_FLAGS " ${FSANITIZE} -Wall -Warray-temporaries -O0 -g -fdec-math -fbacktrace ${strict} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF} " )
+
+set_source_files_properties(${c_source_files} PROPERTIES COMPILE_FLAGS " ${FSANITIZE} ${h3d_inc} ${zlib_inc} ${md5_inc} ${precision_flag}  ${cppmach} ${cpprel} -O0 -g  ${OPENMP}" )
+
+set_source_files_properties(${cpp_source_files} PROPERTIES COMPILE_FLAGS "${FSANITIZE} ${h3d_inc} ${zlib_inc} ${md5_inc} ${precision_flag} ${cppmach} ${cpprel}  -O0 -g ${OPENMP} ${mpi_flag} -std=c++14  " )
+
+
+elseif ( debug STREQUAL "asan" )
+
+set( FSANITIZE "-fsanitize=address -fsanitize=undefined  -fsanitize=bounds-strict -fsanitize=integer-divide-by-zero -fsanitize=object-size  -fsanitize=float-divide-by-zero -DSANITIZE")
+
+set( legacy_flags "${FSANITIZE} -Wall -O0 -g -fdec-math -fbacktrace ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${portability} ${mpi_flag} ${ADF}")
+
+set_source_files_properties( ${source_files}  PROPERTIES COMPILE_FLAGS "${FSANITIZE} -Wall -Warray-temporaries -O0 -g -fdec-math -fbacktrace ${strict} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}  " )
+
+set_source_files_properties(${c_source_files} PROPERTIES COMPILE_FLAGS "${FSANITIZE} ${h3d_inc} ${precision_flag}  ${cppmach} ${cpprel} -O0 -g  ${OPENMP}  ${zlib_inc} ${md5_inc} " )
+
+set_source_files_properties(${cpp_source_files} PROPERTIES COMPILE_FLAGS "${FSANITIZE} ${h3d_inc} ${precision_flag} ${cppmach} ${cpprel}  -O0 -g ${OPENMP}  ${zlib_inc} ${md5_inc} ${mpi_flag} -std=c++14" )
+
+else ()
+
+# Fortran
+
+set( legacy_flags " -w -O3 -fdec-math ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${portability} ${mpi_flag} ${ADF}" )
+
+set( unused_dummy_arg_strict_flags " -O3 -fdec-math ${strict_wo_mpi} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none ${mpi_flag} ${ADF}")
+
+set_source_files_properties( ${source_files}  PROPERTIES COMPILE_FLAGS " -O3 -fdec-math ${strict}  ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none ${mpi_flag} ${ADF}" )
+
+# C source files
+set_source_files_properties(${c_source_files} PROPERTIES COMPILE_FLAGS " -w -O2 ${h3d_inc} ${zlib_inc} ${md5_inc} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} " )
+
+# CXX source files
+set_source_files_properties(${cpp_source_files} PROPERTIES COMPILE_FLAGS "-w -O2 ${h3d_inc} ${zlib_inc} ${md5_inc} ${opt_flag} ${precision_flag} ${cppmach} ${cpprel} -std=c++14 ${mpi_flag} " )
+
+endif()
+
+
+# Fortran <-> C symbol naming bridge
+# ----------------------------------
+# The C/C++ sources declare Fortran entry points using the Intel-on-Windows
+# convention (UPPERCASE, no trailing underscore) - see the "#ifdef _WIN64"
+# blocks in engine/share/includes/dyn_userlib.h, engine/source/user_interface/
+# dyn_userlib_callback.c, common_source/tools/set_operation/set_tools.cpp and
+# similar. gfortran instead emits the GNU convention (lowercase + trailing
+# underscore), so the two spellings never meet and the link fails with ~80
+# undefined references.
+#
+# Rather than edit those ~45 files, the linker is told to define the missing
+# expected spelling as an alias of the symbol gfortran actually emitted:
+#     ld --defsym,ARRET=arret_
+# --defsym is a plain symbol table definition (no thunk, no extra call frame)
+# and works on PE/COFF. Both directions occur: uppercase names referenced from
+# C but emitted lowercase by gfortran, and the reverse for the user-library
+# callbacks that Fortran calls back into C.
+#
+# The reverse-direction entries below are exactly the aliases the sources
+# already declare under "#ifdef _WIN64" in engine/share/includes/dyn_userlib.h
+# and common_source/tools/set_operation/set_tools.cpp.
+set ( fortran_names
+  "-Wl,--defsym,ARRET=arret_"
+  "-Wl,--defsym,FINTER=finter_"
+  "-Wl,--defsym,GET_SPRING_ELNUM=get_spring_elnum_"
+  "-Wl,--defsym,GET_TABLE_VALUE=get_table_value_"
+  "-Wl,--defsym,GET_TABLE_VALUE_DYDX=get_table_value_dydx_"
+  "-Wl,--defsym,GET_USER_WINDOW_NODES=get_user_window_nodes_"
+  "-Wl,--defsym,GET_U_ACCEL=get_u_accel_"
+  "-Wl,--defsym,GET_U_CYCLE=get_u_cycle_"
+  "-Wl,--defsym,GET_U_FID=get_u_fid_"
+  "-Wl,--defsym,GET_U_FUNC=get_u_func_"
+  "-Wl,--defsym,GET_U_FUNC_N=get_u_func_n_"
+  "-Wl,--defsym,GET_U_FUNC_X=get_u_func_x_"
+  "-Wl,--defsym,GET_U_FUNC_Y=get_u_func_y_"
+  "-Wl,--defsym,GET_U_GEO=get_u_geo_"
+  "-Wl,--defsym,GET_U_M=get_u_m_"
+  "-Wl,--defsym,GET_U_MAT=get_u_mat_"
+  "-Wl,--defsym,GET_U_MID=get_u_mid_"
+  "-Wl,--defsym,GET_U_MNU=get_u_mnu_"
+  "-Wl,--defsym,GET_U_NOD_A=get_u_nod_a_"
+  "-Wl,--defsym,GET_U_NOD_D=get_u_nod_d_"
+  "-Wl,--defsym,GET_U_NOD_V=get_u_nod_v_"
+  "-Wl,--defsym,GET_U_NOD_X=get_u_nod_x_"
+  "-Wl,--defsym,GET_U_NUMACC=get_u_numacc_"
+  "-Wl,--defsym,GET_U_NUMFUN=get_u_numfun_"
+  "-Wl,--defsym,GET_U_NUMNOD=get_u_numnod_"
+  "-Wl,--defsym,GET_U_NUMSENS=get_u_numsens_"
+  "-Wl,--defsym,GET_U_NUMTABLE=get_u_numtable_"
+  "-Wl,--defsym,GET_U_P=get_u_p_"
+  "-Wl,--defsym,GET_U_PID=get_u_pid_"
+  "-Wl,--defsym,GET_U_PNU=get_u_pnu_"
+  "-Wl,--defsym,GET_U_PROC=get_u_proc_"
+  "-Wl,--defsym,GET_U_SENS=get_u_sens_"
+  "-Wl,--defsym,GET_U_SENS_ACTI=get_u_sens_acti_"
+  "-Wl,--defsym,GET_U_SENS_DELAY=get_u_sens_delay_"
+  "-Wl,--defsym,GET_U_SENS_FPAR=get_u_sens_fpar_"
+  "-Wl,--defsym,GET_U_SENS_ID=get_u_sens_id_"
+  "-Wl,--defsym,GET_U_SENS_IPAR=get_u_sens_ipar_"
+  "-Wl,--defsym,GET_U_SENS_VALUE=get_u_sens_value_"
+  "-Wl,--defsym,GET_U_SKEW=get_u_skew_"
+  "-Wl,--defsym,GET_U_TABLE=get_u_table_"
+  "-Wl,--defsym,GET_U_TASK=get_u_task_"
+  "-Wl,--defsym,GET_U_TIME=get_u_time_"
+  "-Wl,--defsym,GET_U_UVAR=get_u_uvar_"
+  "-Wl,--defsym,GET_U_VTABLE=get_u_vtable_"
+  "-Wl,--defsym,GET_VTABLE_VALUE=get_vtable_value_"
+  "-Wl,--defsym,GET_V_FUNC=get_v_func_"
+  "-Wl,--defsym,MAT_SOLID_GET_NOD_V=mat_solid_get_nod_v_"
+  "-Wl,--defsym,MAT_SOLID_GET_NOD_X=mat_solid_get_nod_x_"
+  "-Wl,--defsym,SET_SPRING_ELNUM=set_spring_elnum_"
+  "-Wl,--defsym,SET_U_SENS_ACTI=set_u_sens_acti_"
+  "-Wl,--defsym,SET_U_SENS_DEACTI=set_u_sens_deacti_"
+  "-Wl,--defsym,SET_U_SENS_MAXVALUE=set_u_sens_maxvalue_"
+  "-Wl,--defsym,SET_U_SENS_VALUE=set_u_sens_value_"
+  "-Wl,--defsym,SET_U_SHLPLAS=set_u_shlplas_"
+  "-Wl,--defsym,SET_U_SOLPLAS=set_u_solplas_"
+  "-Wl,--defsym,TRACE_CF=trace_cf_"
+  "-Wl,--defsym,USERWINDOW_GET_A=userwindow_get_a_"
+  "-Wl,--defsym,USERWINDOW_GET_AR=userwindow_get_ar_"
+  "-Wl,--defsym,VINTER2=vinter2_"
+  "-Wl,--defsym,VINTER2DP=vinter2dp_"
+  "-Wl,--defsym,WRITE_IOUT=write_iout_"
+  "-Wl,--defsym,WRITE_OUT_FILE=write_out_file_"
+  "-Wl,--defsym,dyn_userlib_init_=DYN_USERLIB_INIT"
+  "-Wl,--defsym,eng_userlib_flaw_=ENG_USERLIB_FLAW"
+  "-Wl,--defsym,eng_userlib_flawc_=ENG_USERLIB_FLAWC"
+  "-Wl,--defsym,eng_userlib_get_law_var_=ENG_USERLIB_GET_LAW_VAR"
+  "-Wl,--defsym,eng_userlib_get_law_var_2_=ENG_USERLIB_GET_LAW_VAR_2"
+  "-Wl,--defsym,eng_userlib_get_lawc_var_=ENG_USERLIB_GET_LAWC_VAR"
+  "-Wl,--defsym,eng_userlib_get_lawc_var_2_=ENG_USERLIB_GET_LAWC_VAR_2"
+  "-Wl,--defsym,eng_userlib_ruser_=ENG_USERLIB_RUSER"
+  "-Wl,--defsym,eng_userlib_set_law_var_=ENG_USERLIB_SET_LAW_VAR"
+  "-Wl,--defsym,eng_userlib_set_law_var_2_=ENG_USERLIB_SET_LAW_VAR_2"
+  "-Wl,--defsym,eng_userlib_set_lawc_=ENG_USERLIB_SET_LAWC"
+  "-Wl,--defsym,eng_userlib_set_lawc_var_2_=ENG_USERLIB_SET_LAWC_VAR_2"
+  "-Wl,--defsym,eng_userlib_sigeps_=ENG_USERLIB_SIGEPS"
+  "-Wl,--defsym,eng_userlib_sigepsc_=ENG_USERLIB_SIGEPSC"
+  "-Wl,--defsym,eng_userlib_sigeps99_=ENG_USERLIB_SIGEPS99"
+  "-Wl,--defsym,eng_userlib_sigeps99c_=ENG_USERLIB_SIGEPS99C"
+  "-Wl,--defsym,eng_userlib_suser_=ENG_USERLIB_SUSER"
+  "-Wl,--defsym,intersect_2_sorted_sets_=INTERSECT_2_SORTED_SETS"
+)
+
+# Stack reserve
+# -------------
+# The sources keep large arrays as locals, e.g. IWORK(70000) (280 kB) in
+# starter/source/system/sysfus.F, so the default 1-2 MB Windows stack is not
+# enough and the process dies in ___chkstk_ms during a routine's prologue.
+# This is not a MinGW quirk: the Intel Windows configuration
+# (engine/CMake_Compilers/cmake_win64.txt) passes /STACK:1500000000 for the
+# same reason, and the value below matches it.
+set ( win_stack "-Wl,--stack,1500000000" )
+
+# Linking flags
+# fortran_names is a CMake list; joining it into a quoted string would leave
+# the list separators (";") in place, which ld rejects. Expand it first.
+string (REPLACE ";" " " fortran_names "${fortran_names}")
+set (CMAKE_EXE_LINKER_FLAGS "${OPENMP} ${FSANITIZE} ${fortran_names} ${win_stack}" )
+
+#Libraries
+
+# NOTE: LINK is a CMake *list* of items, not one space separated string.
+# A single quoted string makes the Ninja generator emit
+#   LINK_LIBRARIES = "<all files in one quoted token>"
+# which ninja then tries to stat as a single (absurdly long) filename.
+if ( static_link STREQUAL "1" )
+  set (LINK ${metis_lib} ${lapack_lib} ${zlib_lib} ${md5_lib} ${mpi_lib}
+            ws2_32 -static-libgfortran -static-libstdc++ -static-libgcc)
+else()
+  set (LINK ${metis_lib} ${lapack_lib} ${zlib_lib} ${md5_lib} ${mpi_lib} ws2_32)
+endif()
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------
+# Specific set of compilation flag
+
+include (${CMAKE_CURRENT_SOURCE_DIR}/CMake_Compilers/legacy_fortran.cmake)
+
+if( no_python STREQUAL "1" )
+get_source_file_property( existing_flags ${source_directory}/../common_source/modules/cpp_python_funct.cpp COMPILE_FLAGS)
+set_source_files_properties( ${source_directory}/../common_source/modules/cpp_python_funct.cpp PROPERTIES COMPILE_FLAGS  "${existing_flags} -DPYTHON_DISABLED" )
+endif()
+
+
+if ( debug STREQUAL "0" )
+
+set (F_O0_compiler_flags " -O0 ${opt_flag} -w ${portability} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}")
+set (F_O1_compiler_flags " -O1 ${opt_flag} -w ${portability} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}")
+set (F_O2_compiler_flags " -O2 ${opt_flag} -w ${portability} ${precision_flag} ${cppmach} ${cpprel} -DCPP_comp=f90 -ffixed-line-length-none  ${mpi_flag} ${ADF}")
+set (C_O1_compiler_flags " -O1 ${opt_flag} -w ${precision_flag} ${cppmach} ${cpprel}  ${mpi_flag} ${ADF}")
+
+
+# resol_init.F
+set_source_files_properties( ${source_directory}/source/engine/resol_init.F PROPERTIES COMPILE_FLAGS ${F_O1_compiler_flags} )
+
+# resol.F
+set_source_files_properties( ${source_directory}/source/engine/resol.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+set_source_files_properties( ${source_directory}/source/interfaces/int22/i22clip_tools.F PROPERTIES COMPILE_FLAGS ${F_O1_compiler_flags} )
+
+
+# arralloc.F
+set_source_files_properties( ${source_directory}/source/output/restart/arralloc.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# m1lawp.F
+set_source_files_properties( ${source_directory}/source/materials/mat/mat001/m1lawp.F PROPERTIES COMPILE_FLAGS ${F_O1_compiler_flags} )
+
+# cbasumg3.F
+set_source_files_properties( ${source_directory}/source/elements/shell/coqueba/cbasumg3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# redkey0.F
+set_source_files_properties( ${source_directory}/source/input/redkey0.F PROPERTIES COMPILE_FLAGS ${F_O1_compiler_flags} )
+
+# i3fri3.F
+set_source_files_properties( ${source_directory}/source/interfaces/inter3d/i3fri3.F PROPERTIES COMPILE_FLAGS ${F_O1_compiler_flags} )
+
+# dsgri7.F
+set_source_files_properties( ${source_directory}/source/implicit/dsolve/dsgri7.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i11cor3.F
+set_source_files_properties( ${source_directory}/source/interfaces/int11/i11cor3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i11pen3.F
+set_source_files_properties( ${source_directory}/source/interfaces/int11/i11pen3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i7cor3t.F
+set_source_files_properties( ${source_directory}/source/interfaces/int07/i7cor3t.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i20cor3t.F
+set_source_files_properties( ${source_directory}/source/interfaces/int20/i20cor3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i20sto.F
+set_source_files_properties( ${source_directory}/source/interfaces/intsort/i20sto.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i23cor3t.F
+set_source_files_properties( ${source_directory}/source/interfaces/int23/i23cort3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i24cor3t.F
+set_source_files_properties( ${source_directory}/source/interfaces/int24/i24cort3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# i25cor3t.F
+set_source_files_properties( ${source_directory}/source/interfaces/int25/i25cort3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# spbuc3.F
+set_source_files_properties( ${source_directory}/source/elements/sph/spbuc3.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# spclasv.F
+set_source_files_properties( ${source_directory}/source/elements/sph/spclasv.F PROPERTIES COMPILE_FLAGS ${F_O2_compiler_flags} )
+
+# rad2rad
+set_source_files_properties( ${source_directory}/source/coupling/rad2rad/rad2rad_c.c PROPERTIES COMPILE_FLAGS ${C_O1_compiler_flags} )
+
+
+endif()

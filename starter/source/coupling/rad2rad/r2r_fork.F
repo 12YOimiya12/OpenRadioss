@@ -96,7 +96,7 @@ C-----------------------------------------------
 C----------------------------------------------------------------------
 C----------------------------- WINDOWS --------------------------------
 C----------------------------------------------------------------------         
-#if CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32
+#if (CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32) && !defined(COMP_GFORTRAN)
         IF (IPID/=0) CALL CREATE_CHILD(IPID_RET,FLG_SWALE)
 C----------------------------------------------------------------------         
 C-------------PGI -> LINUX / SUN -> SOLARISX64 / IBM -> AIX64----------
@@ -131,7 +131,7 @@ C
 C----------------------------------------------------------------------
 C----------------------------- WINDOWS --------------------------------
 C----------------------------------------------------------------------         
-#if CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32
+#if (CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32) && !defined(COMP_GFORTRAN)
             CALL WIN_WAITPID(IPID_RET)
 C----------------------------------------------------------------------
 C-------------PGI -> LINUX / SUN -> SOLARISX64 / IBM -> AIX64----------
@@ -158,7 +158,7 @@ C----------------------------------------------------------------------
                 FLG_SWALE = FLG_SWALE + 1
                 DOM_SWITCH = KDOM
                 KDOM = KDOM - 1
-#if CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32
+#if (CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32) && !defined(COMP_GFORTRAN)
                 CLOSE(IOUT)
 #endif
                 GOTO 2000
@@ -223,7 +223,7 @@ C--------------------------------------------------------------------C
       RETURN
       END
 
-#if CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32
+#if (CPP_mach == CPP_p4win64 || CPP_mach == CPP_p4win32) && !defined(COMP_GFORTRAN)
 !||====================================================================
 !||    win_waitpid   ../starter/source/coupling/rad2rad/r2r_fork.F
 !||--- called by ------------------------------------------------------
