@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\OpenRadioss\OpenRadioss-latest-20231226\build\userlib_kf_vs_community\CMakeFiles\b633e49b138bc59a9d958c7089f10195\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{ABB061C7-5A9E-3AB6-AFF4-1BB21FE3FBE3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

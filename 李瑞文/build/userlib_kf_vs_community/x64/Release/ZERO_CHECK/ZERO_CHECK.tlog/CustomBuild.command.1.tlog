@@ -1,0 +1,10 @@
+^D:\OPENRADIOSS\OPENRADIOSS-LATEST-20231226\BUILD\USERLIB_KF_VS_COMMUNITY\CMAKEFILES\B633E49B138BC59A9D958C7089F10195\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/OpenRadioss/OpenRadioss-latest-20231226/examples/userlib/kf_law99 -BD:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_kf_vs_community --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_kf_vs_community/raduser_kf_law99.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\OpenRadioss\OpenRadioss-latest-20231226\examples\userlib\j2_law99\raduser_j2_law99.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\OpenRadioss\OpenRadioss-latest-20231226\examples\userlib\j2_law99\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{722645A2-62A0-3CDA-9069-CCDAEBDC64C1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

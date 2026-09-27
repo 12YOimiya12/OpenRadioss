@@ -1,0 +1,10 @@
+^D:\OPENRADIOSS\OPENRADIOSS-LATEST-20231226\EXAMPLES\USERLIB\J2_LAW99\CMAKELISTS.TXT
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/OpenRadioss/OpenRadioss-latest-20231226/examples/userlib/j2_law99 -BD:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_j2_vs_community --check-stamp-file D:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_j2_vs_community/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
