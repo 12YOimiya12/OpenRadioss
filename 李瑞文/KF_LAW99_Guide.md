@@ -148,6 +148,116 @@ Set-Location $out
 - Engine cycle：`TOTAL NUMBER OF CYCLES : 8`。
 - 输出目录：`build/userlib_kf_runtime_test`。
 
+### 7.1 本机 MinGW 适配（2026-09，一键脚本）
+
+第 6、7 节记录的是**原开发机**的流程：用 Visual Studio 2022 (MSVC) 编译 DLL，跑预编译的 MSVC 版
+OpenRadioss 运行时（`D:\OpenRadioss\2023-02-04-...`）。本机没有 Visual Studio，求解器是仓库自带的
+**MinGW gfortran 构建**，所以原命令不能直接用。适配后本项目在本机的运行方式如下。
+
+#### 环境差异
+
+| 项目 | 原开发机（指南第 6/7 节） | 本机（2026-09） |
+|---|---|---|
+| C 编译器 | MSVC (Visual Studio 2022) | MinGW-w64 gcc 15.2.0 |
+| 构建驱动 | `mingw32-make` / MSBuild | **ninja**（`extlib/build_mingw64/bin/ninja.exe`） |
+| 求解器可执行文件 | `starter_win64.exe` / `engine_win64.exe` | `starter_win64_gf.exe` / `engine_win64_gf.exe` |
+| 求解器位置 | 独立安装目录 | 仓库 `exec/` |
+| 配置文件 | 安装目录下 `hm_cfg_files` | 仓库 `hm_cfg_files` |
+| 用户库文件名 | `libraduser_win64.dll` | **同为** `libraduser_win64.dll`（源码无 `_gf` 变体） |
+
+用户库 DLL 的**文件名和导出符号在两套工具链下完全相同**，因为
+`starter/source/user_interface/dyn_userlib.c` 与 `engine/.../dyn_userlib.c` 里拼的都只是
+`libraduser_win64.dll`。所以求解器侧不需要任何改动，适配只发生在“怎么把它编出来、怎么喂给求解器”。
+
+本机 gfortran 求解器**已内置动态用户库支持**（`user_interface/` 被 cmake 无条件编译），
+**不需要重新编译求解器**。
+
+#### 一键运行
+
+```bat
+run_local_kf.bat
+```
+
+在资源管理器双击，或在 `cmd.exe` 里执行即可。**不要从 Git Bash 调用**：Git Bash 会破坏
+`G:\...` 形式的 PATH 条目，求解器会静默失败（退出码 3221225785，无输出）。若必须从 Git Bash
+触发，用 `cmd //c ".\\run_local_kf.bat"`。
+
+脚本依次做 5 件事，任一步失败即中止：
+
+1. 用 MinGW + ninja 编译 DLL → `build_local/kf_dll/libraduser_win64.dll`；
+2. 搭运行时镜像 `build_local/runtime/`（求解器硬链接 + `hm_cfg_files` junction + 编译 `th_to_csv`）；
+3. 跑 DLL 材料点矩阵 `validate_kf_law99.py`；
+4. 跑第 11 节清单 `run_step11_validation.py`（含单砖 Starter/Engine 和 T01→CSV）；
+5. 打印各产物路径。
+
+产物全部落在 `build_local/`，不触碰原 `build/`（原开发机拷来的产物）和仓库根目录。
+
+#### 各步骤的手工等价命令
+
+```bat
+rem 0. 环境（cmd.exe）
+set "PATH=G:\Postgraduate_Researching\openSource_soft\OpenRadioss\extlib\build_mingw64;G:\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\mingw64\bin;%PATH%"
+set "RAD_CFG_PATH=G:\Postgraduate_Researching\openSource_soft\OpenRadioss\hm_cfg_files"
+
+rem 1. 编译 DLL（注意是 Ninja，不是 MinGW Makefiles）
+cmake -S examples\userlib\kf_law99 -B build_local\kf_dll -G Ninja ^
+      -DCMAKE_MAKE_PROGRAM=..\extlib\build_mingw64\bin\ninja.exe -DCMAKE_BUILD_TYPE=Release
+cmake --build build_local\kf_dll
+
+rem 2. 材料点矩阵
+python examples\userlib\kf_law99\validate_kf_law99.py ^
+       --dll build_local\kf_dll\libraduser_win64.dll --out build_local\validation
+
+rem 3. 第 11 节清单
+python examples\userlib\kf_law99\run_step11_validation.py ^
+       --runtime build_local\runtime --dll build_local\kf_dll\libraduser_win64.dll ^
+       --out build_local\step11 --skip-build
+```
+
+#### 三个必须知道的坑
+
+1. **用 ninja，不要用 `mingw32-make`。** 本仓库路径含中文（`李瑞文`），`mingw32-make` 会报
+   `Illegal byte sequence` 而无法 stat 源文件；`ninja` 能正确处理 UTF-8 路径。主仓库的
+   `build_mingw64.sh` 也是因此弃用 make。ninja 就在 `extlib/build_mingw64/bin/ninja.exe`。
+
+2. **`libgcc_s_seh-1.dll` 要拷到 DLL 旁边。** MinGW 编出的用户库依赖这个运行时；
+   Python 3.8 以后 `ctypes` 不再用 `PATH` 解析依赖 DLL，所以材料点矩阵会报
+   `Could not find module ... (or one of its dependencies)`。`run_local_kf.bat` 会自动把它
+   从 MinGW `bin` 拷到 `build_local/kf_dll/`。求解器本身是普通程序，走 `PATH` 即可，不受影响。
+
+3. **`--skip-build` 的原因。** `run_step11_validation.py` 的 `build_library()` 只会构建
+   `build/userlib_kf_vs_community`（Visual Studio 工程），本机不存在。DLL 由脚本第 1 步构建，
+   所以清单里跳过该门；报告因此不显示 “Build KF LAW99 DLL” 这一行，等价性由脚本第 1 步保证
+   （编译失败会立即中止，不会继续跑验证）。
+
+#### 本机运行结果（2026-09-27 实测）
+
+与指南第 7、8、11 节记录的原开发机结果一致：
+
+```text
+Step 3  材料点矩阵：8/8 PASS，Overall: PASS
+Step 4  第 11 节清单：
+        PASS DLL material-point matrix
+        PASS P-alpha EOS consistency
+        PASS material-point step-size sensitivity
+        PASS OpenRadioss one-brick smoke and T01 integrity
+        NOT_CERTIFIED rate-effect calibration data gate
+        NOT_CERTIFIED impact benchmark gate
+        NOT_CERTIFIED mesh-objectivity gate
+        （3 项 NOT_CERTIFIED 属预期，与第 11 节说明一致）
+```
+
+单砖 FE 日志核对：Starter `0 ERROR(S)` / `2 WARNING(S)`（`/IOFLAG` 与 `/DEF_SOLID` 的旧格式字段
+warning，与 J2 示例一致）；Engine `NORMAL TERMINATION` / `TOTAL NUMBER OF CYCLES : 8`；
+Starter 材料 echo 打印 `USER MATERIAL LAW99.02 ... Parameter set = input card`，证明动态库已被
+求解器加载并读卡；`kf_law99T01.csv` 数值有限、时间步 `2.69E-04` 为正、应力量级正常。
+
+#### 关于 userlib SDK
+
+本项目的 LAW99 用户库是**纯 C 单文件**（只用 libc 头文件、`__declspec(dllexport)`，
+不 include 任何 Fortran 侧头文件），因此**不需要** `Tools/userlib_sdk`。SDK 只在编写需要
+Fortran 模块（`.mod`）的用户子程序时才用得上。
+
 ## 8. 验证矩阵
 
 除 OpenRadioss 单砖 smoke test 外，当前新增了 DLL 级材料点验证脚本：

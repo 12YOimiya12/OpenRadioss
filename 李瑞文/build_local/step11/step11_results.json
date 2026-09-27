@@ -1,0 +1,152 @@
+{
+  "automated_passed": true,
+  "gates": [
+    {
+      "name": "DLL material-point matrix",
+      "status": "PASS",
+      "metrics": {
+        "returncode": 0,
+        "checks": {
+          "hydrostatic_compression": true,
+          "large_hydrostatic_compression": true,
+          "uniaxial_compression": true,
+          "uniaxial_tension": true,
+          "simple_shear": true,
+          "rate_effect": true,
+          "corotational_objectivity": true,
+          "impact_rate_sweep": true
+        },
+        "n_checks": 8,
+        "all_passed": true
+      },
+      "notes": [
+        "log=G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss\\\u674e\u745e\u6587\\build_local\\step11\\material_point_matrix.log"
+      ]
+    },
+    {
+      "name": "P-alpha EOS consistency",
+      "status": "PASS",
+      "metrics": {
+        "p_final": 9410372592.265255,
+        "J_final": 0.6466595666475786,
+        "mu_final": 0.5464087312342933,
+        "alpha_final": 1.0,
+        "max_pressure_rel_error": 0.0,
+        "max_alpha_abs_error": 0.0
+      },
+      "notes": []
+    },
+    {
+      "name": "material-point step-size sensitivity",
+      "status": "PASS",
+      "metrics": {
+        "stress_rel_32_vs_64": 0.0017040550645704832,
+        "pressure_rel_32_vs_64": 0.0007884064176683331,
+        "epbar_rel_32_vs_64": 0.0018508145538392712,
+        "damage_rel_32_vs_64": 0.016132985288167777,
+        "damage_16": 0.17416807434340165,
+        "damage_32": 0.17968368426802156,
+        "damage_64": 0.18263005221356024
+      },
+      "notes": [
+        "This is a material-point gate, not a mesh-objectivity proof."
+      ]
+    },
+    {
+      "name": "OpenRadioss one-brick smoke and T01 integrity",
+      "status": "PASS",
+      "metrics": {
+        "starter_returncode": 0,
+        "engine_returncode": 0,
+        "cycles": 8,
+        "starter_0_errors": true,
+        "engine_normal_termination": true,
+        "th_to_csv_returncode": 0,
+        "csv_rows": 4,
+        "csv_columns": 55,
+        "final_time": 0.001615632,
+        "final_mass": 10000.0,
+        "final_internal_energy": 40591.96
+      },
+      "notes": [
+        "run_dir=G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss\\\u674e\u745e\u6587\\build_local\\step11\\fe_one_brick"
+      ]
+    },
+    {
+      "name": "rate-effect calibration data gate",
+      "status": "NOT_CERTIFIED",
+      "metrics": {},
+      "notes": [
+        "Automated rate monotonicity passes, but epsdot0/rateS/rateT are not calibrated to SHPB or other dynamic tests."
+      ]
+    },
+    {
+      "name": "impact benchmark gate",
+      "status": "NOT_CERTIFIED",
+      "metrics": {},
+      "notes": [
+        "SHPB, plate impact, penetration, and blast benchmarks require calibrated input data and FE benchmark decks."
+      ]
+    },
+    {
+      "name": "mesh-objectivity gate",
+      "status": "NOT_CERTIFIED",
+      "metrics": {},
+      "notes": [
+        "Damage has no characteristic-length or fracture-energy regularization yet; mesh sensitivity cannot be certified."
+      ]
+    }
+  ],
+  "section_11_mapping": [
+    {
+      "item": "Copy DLL matrix into OpenRadioss FE one-brick matrix",
+      "status": "PASS",
+      "evidence": "DLL matrix passed; OpenRadioss one-brick Starter/Engine ran and T01 converted to finite CSV."
+    },
+    {
+      "item": "Hydrostatic compression: compare P-alpha curve",
+      "status": "PASS",
+      "evidence": "max pressure relative error=0.000e+00"
+    },
+    {
+      "item": "Uniaxial compression: pressure strengthening, yield, damage onset",
+      "status": "PASS",
+      "evidence": "Covered by DLL material-point matrix."
+    },
+    {
+      "item": "Uniaxial tension: tensile cutoff and tensile volumetric damage",
+      "status": "PASS",
+      "evidence": "Covered by DLL material-point matrix."
+    },
+    {
+      "item": "Simple shear: radial return and non-negative plastic dissipation",
+      "status": "PASS",
+      "evidence": "Covered by DLL material-point matrix."
+    },
+    {
+      "item": "Rate-effect sweep: monotonicity and calibration readiness",
+      "status": "PASS",
+      "evidence": "Monotonic checks pass; production calibration status=NOT_CERTIFIED."
+    },
+    {
+      "item": "Large rotation: corotational objectivity",
+      "status": "PASS",
+      "evidence": "DLL objectivity check compares identity and 45-degree rotated shear response."
+    },
+    {
+      "item": "Impact-rate sweep: SHPB/plate impact/penetration/blast readiness",
+      "status": "NOT_CERTIFIED",
+      "evidence": "Material-point impact-rate sweep passes; FE impact benchmarks are not certified without calibrated decks/data."
+    },
+    {
+      "item": "Mesh sensitivity",
+      "status": "NOT_CERTIFIED",
+      "evidence": "Material-point step-size gate passes; mesh objectivity requires damage regularization and multi-element FE tests."
+    },
+    {
+      "item": "Time-step sensitivity",
+      "status": "PASS",
+      "evidence": "32 vs 64 step stress relative difference=1.704e-03"
+    }
+  ]
+}
