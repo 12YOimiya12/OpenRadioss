@@ -68,7 +68,9 @@
       "Bash(cd \"G:/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk\" && echo \"=== userlib_sdk/\\(SDK 本体,含脚本/库/模块\\)===\" && ls -F userlib_sdk/ && echo && echo \"=== userlib_routines/\\(可参考的用户例程\\)===\" && ls -F userlib_routines/ | head -25 && echo && echo \"=== examples/ ===\" && find examples -type f | head -15 && echo && echo \"=== build_windows.bat 支持的参数 ===\" && grep -nE \"arch=|compiler=|prec=|echo\" build_windows.bat | head -25)",
       "Read(//g/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk/**)",
       "Bash(cd \"G:/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk\" && echo \"=== win64_gfortran/ 内容 ===\" && find userlib_sdk/win64_gfortran -maxdepth 2 | head -20 && echo && echo \"=== .mod / 库文件 ===\" && find userlib_sdk/win64_gfortran -name \"*.mod\" | head -10 && find userlib_sdk/win64_gfortran -name \"*.a\" -o -name \"*.lib\" | head -10 && echo && echo \"=== build_windows.bat 里的编译器路径设定 ===\" && grep -nE \"fcomp|ccomp|MINGW|gfortran|mingw\" build_windows.bat | head -20)",
-      "Read(//g/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk/userlib_sdk/win64_gfortran/**)"
+      "Read(//g/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk/userlib_sdk/win64_gfortran/**)",
+      "Bash(sed -i 's/\\\\r$//; s/$/\\\\r/' run_local_kf.bat)",
+      "Bash(cmd //c \".\\\\run_local_kf.bat nopause\")"
     ],
     "additionalDirectories": [
       "G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss"

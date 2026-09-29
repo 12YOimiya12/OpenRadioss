@@ -1,3 +1,0 @@
-G:/Postgraduate_Researching/openSource_soft/OpenRadioss/李瑞文/build_local/kf_dll/CMakeFiles/raduser_kf_law99.dir
-G:/Postgraduate_Researching/openSource_soft/OpenRadioss/李瑞文/build_local/kf_dll/CMakeFiles/edit_cache.dir
-G:/Postgraduate_Researching/openSource_soft/OpenRadioss/李瑞文/build_local/kf_dll/CMakeFiles/rebuild_cache.dir

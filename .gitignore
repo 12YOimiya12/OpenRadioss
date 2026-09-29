@@ -49,6 +49,9 @@ extlib.zip
 /build/
 /build_mingw64*/
 
+# 李瑞文 KF LAW99 二次开发的本机 MinGW 构建/验证产物
+/李瑞文/build_local/
+
 # 仿真运行输出(.rst / .anim / A0NN 动画),不要同步到云端
 /BirdStrike/run/
 /BirdStrike/run_h3d/

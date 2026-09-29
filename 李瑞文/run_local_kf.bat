@@ -92,4 +92,8 @@ echo  Material point : %OUT%\validation\validation_report.md
 echo  Section 11     : %OUT%\step11\step11_verification_report.md
 echo  One-brick logs : %OUT%\step11\fe_one_brick\starter.log / engine.log
 
+rem  Double-clicked runs get a fresh console that closes on exit, so pause to
+rem  let the summary above be read.  Automated/scripted runs pass "nopause".
+if /i not "%~1"=="nopause" pause
+
 endlocal
