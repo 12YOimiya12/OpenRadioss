@@ -1,0 +1,53 @@
+# ===========================================================================
+#  李瑞文 KF LAW99 —— 可视化用引擎 deck
+#
+#  内容来源: examples/userlib/kf_law99/test/kf_law99_0001.rad 的副本。
+#  模型、材料、载荷、时间步设定**全部保持不变**; 只做了下面标注的后处理输出改动,
+#  目的是让这次计算的结果能在 HyperView 里打开:
+#
+#    [ADDED]   /ANIM/VECT/DIS        输出节点位移矢量
+#    [ADDED]   /H3D/...              输出 H3D(含 KF 状态变量 User Var)
+#    [CHANGED] /ANIM/DT 的 TFREQ     0.001 -> 0.0002 (原来只出 2 帧, 看不了动画)
+#
+#  注: 本机 HyperWorks 14 读不了 H3D(格式版本太新, 见 README),
+#      但它能读 /ANIM 产出的 A001 动画文件; H3D 留给更新版 HyperWorks。
+# ===========================================================================
+/ANIM/DT
+#   TSTART     TFREQ
+0.0 0.0002
+# [ADDED] displacement vectors for HyperView
+/ANIM/VECT/DIS
+/DT
+0.500000 0.000000
+/MON/ON
+/PARITH/ON
+/PRINT/-10/55
+/RUN/LAW99_KF/1
+0.002
+/TFILE/4
+#            dT_HIS
+0.0005
+# [ADDED] H3D output. USER/UVAR=n writes KF state variable n:
+#   1=D damage, 2=alpha, 3=epbar, 4=P pressure, 5=sigma_y,
+#   6=epsdot_eq, 7=J, 8=mu   (see KF_LAW99_Guide.md section 4)
+/H3D/DT
+#   TSTART     TFREQ
+0.0 0.0002
+/H3D/SOLID/EPSP
+/H3D/SOLID/VONM
+/H3D/SOLID/DENS
+/H3D/SOLID/USER/UVAR=1
+1
+/H3D/SOLID/USER/UVAR=2
+1
+/H3D/SOLID/USER/UVAR=3
+1
+/H3D/SOLID/USER/UVAR=4
+1
+/H3D/SOLID/USER/UVAR=5
+1
+/H3D/SOLID/USER/UVAR=7
+1
+/H3D/SOLID/USER/UVAR=8
+1
+/VERS/2019

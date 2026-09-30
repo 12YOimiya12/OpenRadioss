@@ -49,8 +49,13 @@ extlib.zip
 /build/
 /build_mingw64*/
 
-# 李瑞文 KF LAW99 二次开发的本机 MinGW 构建/验证产物
-/李瑞文/build_local/
+# liruiw (李瑞文) KF LAW99 二次开发：构建/验证产物与运行输出不提交
+/liruiw/build/
+/liruiw/build_local/
+
+# 爆炸算例改编尝试（用户决定不需要）与仓库根散落的运行产物
+/demo2/
+/view_kf/
 
 # 仿真运行输出(.rst / .anim / A0NN 动画),不要同步到云端
 /BirdStrike/run/

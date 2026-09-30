@@ -70,10 +70,22 @@
       "Bash(cd \"G:/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk\" && echo \"=== win64_gfortran/ 内容 ===\" && find userlib_sdk/win64_gfortran -maxdepth 2 | head -20 && echo && echo \"=== .mod / 库文件 ===\" && find userlib_sdk/win64_gfortran -name \"*.mod\" | head -10 && find userlib_sdk/win64_gfortran -name \"*.a\" -o -name \"*.lib\" | head -10 && echo && echo \"=== build_windows.bat 里的编译器路径设定 ===\" && grep -nE \"fcomp|ccomp|MINGW|gfortran|mingw\" build_windows.bat | head -20)",
       "Read(//g/Postgraduate_Researching/openSource_soft/Tools/userlib_sdk/userlib_sdk/win64_gfortran/**)",
       "Bash(sed -i 's/\\\\r$//; s/$/\\\\r/' run_local_kf.bat)",
-      "Bash(cmd //c \".\\\\run_local_kf.bat nopause\")"
+      "Bash(cmd //c \".\\\\run_local_kf.bat nopause\")",
+      "Bash(cmd //c \"set KF_MINGW=C:\\\\nope\\\\mingw&& .\\\\run_local_kf.bat nopause\")",
+      "Bash(cmd //c \"set KF_TH_SRC=C:\\\\nope\\\\th_to_csv.c&& .\\\\run_local_kf.bat nopause\")",
+      "Bash(xargs grep -ln \"PLOAD\")",
+      "Bash(python make_kf_blast_deck.py)",
+      "Bash(rm -rf run_kf_blast)",
+      "Bash(cmd //c \".\\\\run_kf_blast.bat nopause\")",
+      "Bash(sed -i 's/\\\\r$//; s/$/\\\\r/' run_kf_blast.bat)",
+      "Bash(grep -oE 'ADD\\\\\\(\"[A-Z0-9]+\",\"[^\"]{0,55}' hm_cfg_files/config/CFG/radioss2025/OUTPUTBLOCK/th_node.cfg)",
+      "Bash(cd \"G:/Postgraduate_Researching/openSource_soft/OpenRadioss/demo2\" && sed -i '193s/^## 6\\\\. 踩过的坑/## 7. 踩过的坑/' README_kf_blast.md && grep -n \"^## \" README_kf_blast.md)",
+      "Bash(mkdir -p view_j2)",
+      "Bash(cp examples/userlib/j2_law99/test/law99_j2_0000.rad view_j2/law99_j2_0000.rad)"
     ],
     "additionalDirectories": [
-      "G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss"
+      "G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss",
+      "G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss\\demo2"
     ]
   }
 }

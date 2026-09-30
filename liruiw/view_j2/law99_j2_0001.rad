@@ -1,0 +1,40 @@
+# ===========================================================================
+#  j2_law99 (J2 plasticity, v1 baseline) - engine deck for post-processing.
+#
+#  Source: a copy of examples/userlib/j2_law99/test/law99_j2_0001.rad.
+#  Model, material, load and timestep settings are all UNCHANGED; only the
+#  post-processing output cards marked below were added/changed:
+#
+#    [ADDED]   /ANIM/VECT/DIS        displacement vectors
+#    [ADDED]   /H3D/...              H3D output incl. user state variable
+#    [CHANGED] /ANIM/DT TFREQ        0.001 -> 0.0002 (was 2 frames, not an animation)
+#
+#  Note: local HyperWorks 14 cannot read the H3D (format v24 too new), but it
+#  reads the /ANIM A001 files; H3D is for a newer HyperWorks.  The J2 law has
+#  NUVAR=1: UVAR(1) = equivalent plastic strain epbar.
+# ===========================================================================
+/ANIM/DT
+#   TSTART     TFREQ
+0.0 0.0002
+# [ADDED] displacement vectors for HyperView
+/ANIM/VECT/DIS
+/DT
+0.500000 0.000000
+/MON/ON
+/PARITH/ON
+/PRINT/-10/55
+/RUN/LAW99_J2/1
+0.002
+/TFILE/4
+#            dT_HIS
+0.0005
+# [ADDED] H3D output.  USER/UVAR=1 writes the law's state variable 1 (epbar).
+/H3D/DT
+#   TSTART     TFREQ
+0.0 0.0002
+/H3D/SOLID/EPSP
+/H3D/SOLID/VONM
+/H3D/SOLID/DENS
+/H3D/SOLID/USER/UVAR=1
+1
+/VERS/2019

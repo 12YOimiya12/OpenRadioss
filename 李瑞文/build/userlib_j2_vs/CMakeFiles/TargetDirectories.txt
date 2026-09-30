@@ -1,3 +1,0 @@
-D:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_j2_vs/CMakeFiles/raduser_j2_law99.dir
-D:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_j2_vs/CMakeFiles/ALL_BUILD.dir
-D:/OpenRadioss/OpenRadioss-latest-20231226/build/userlib_j2_vs/CMakeFiles/ZERO_CHECK.dir
