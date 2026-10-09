@@ -1,0 +1,1 @@
+本机没有 Visual Studio，因此使用仓库提供的 MinGW gfortran 工具链。构建过程中修正了 CMake 条件比较的变量引用方式，使其兼容新版 CMake 解析。最终生成 Engine 和 Starter 两个可执行文件，大小分别为 36.4 MB 和 23.5 MB。通过 TWISBEAM 冒烟测试和 LS-DYNA 的 .k 输入检查确认基本运行链路可用，并配置了 VS Code 调试启动。文件名中的 gf 标识 gfortran 构建版本，构建时间为 9 月 15 日。

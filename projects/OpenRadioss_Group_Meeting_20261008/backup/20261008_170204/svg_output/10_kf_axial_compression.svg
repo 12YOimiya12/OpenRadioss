@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 32 1130 102">
+    <text x="72" y="80" font-size="56" font-weight="bold" fill="#202124">KF 多单元单轴压缩算例</text>
+    <text x="76" y="122" font-size="24" fill="#5F6368">160 单元 · 275 节点 · 75 cycles · 10 帧 · 数据：summary.md §15.4</text>
+  </g>
+  <g id="axial-stress-profile" data-pptx-replace-with="chart" data-pptx-bounds="90 150 1100 480" data-pptx-fallback-sha256="67148ed67ade157fcf37f7d1910e4a3d74b5120810c9b7a4ac1769f3648164bb">
+    <metadata type="application/json">{"name":"axial-stress-profile","type":"scatter","scatter_style":"lineMarker","series":[{"name":"t = 4.04e-4 s","x":[0.05,0.15,0.45,0.65,0.95],"y":[-16600000,-15800000,-17000000,-15000000,-295000]},{"name":"t = 1.80e-3 s","x":[0.05,0.15,0.45,0.65,0.95],"y":[-47900000,-52000000,-52700000,-58500000,-70100000]}],"axes":{"x":{"kind":"value","position":"bottom","visible":true,"minimum":0.05,"maximum":0.95,"major_unit":0.2,"major_gridlines":false,"number_format":"0.00"},"y":{"kind":"value","position":"left","visible":true,"minimum":-75000000,"maximum":0,"major_unit":25000000,"major_gridlines":true,"number_format":"0,,"}},"axis_titles":{"x":"x 位置","y":"SX (10^6 Pa)"},"show_legend":true,"legend_position":"bottom","style":{"colors":["#4285F4","#34A853"],"chart_area_fill":"#FFFFFF","plot_area_fill":"#FFFFFF","axis_color":"#DADCE0","grid_color":"#DADCE0","text_color":"#202124","font_family":"Microsoft YaHei","axis_font_size":24,"axis_title_font_size":24,"legend_font_size":24}}</metadata>
+    <g id="axial-stress-profile-chartArea">
+      <line x1="240" y1="238" x2="240" y2="507" stroke="#5F6368" stroke-width="2"/>
+      <line x1="240" y1="507" x2="1020" y2="507" stroke="#5F6368" stroke-width="2"/>
+      <line x1="240" y1="238" x2="1020" y2="238" stroke="#DADCE0" stroke-width="2"/>
+      <line x1="240" y1="328" x2="1020" y2="328" stroke="#DADCE0" stroke-width="2"/>
+      <line x1="240" y1="417" x2="1020" y2="417" stroke="#DADCE0" stroke-width="2"/>
+      <line x1="240" y1="507" x2="1020" y2="507" stroke="#DADCE0" stroke-width="2"/>
+      <!-- chart-plot-area: object=axial-stress-profile | 240,238,1020,507 -->
+      <polyline points="240,298 327,295 587,299 760,292 1020,239" fill="none" stroke="#4285F4" stroke-width="5"/>
+      <circle cx="240" cy="298" r="7" fill="#4285F4"/><circle cx="327" cy="295" r="7" fill="#4285F4"/><circle cx="587" cy="299" r="7" fill="#4285F4"/><circle cx="760" cy="292" r="7" fill="#4285F4"/><circle cx="1020" cy="239" r="7" fill="#4285F4"/>
+      <polyline points="240,410 327,425 587,427 760,448 1020,489" fill="none" stroke="#34A853" stroke-width="5"/>
+      <circle cx="240" cy="410" r="7" fill="#34A853"/><circle cx="327" cy="425" r="7" fill="#34A853"/><circle cx="587" cy="427" r="7" fill="#34A853"/><circle cx="760" cy="448" r="7" fill="#34A853"/><circle cx="1020" cy="489" r="7" fill="#34A853"/>
+      <text x="226" y="514" text-anchor="end" font-size="24" fill="#202124">-75</text>
+      <text x="226" y="424" text-anchor="end" font-size="24" fill="#202124">-50</text>
+      <text x="226" y="335" text-anchor="end" font-size="24" fill="#202124">-25</text>
+      <text x="226" y="245" text-anchor="end" font-size="24" fill="#202124">0</text>
+      <text x="240" y="540" text-anchor="middle" font-size="24" fill="#202124">0.05</text>
+      <text x="413" y="540" text-anchor="middle" font-size="24" fill="#202124">0.25</text>
+      <text x="587" y="540" text-anchor="middle" font-size="24" fill="#202124">0.45</text>
+      <text x="760" y="540" text-anchor="middle" font-size="24" fill="#202124">0.65</text>
+      <text x="933" y="540" text-anchor="middle" font-size="24" fill="#202124">0.85</text>
+      <line x1="384" y1="575" x2="430" y2="575" stroke="#4285F4" stroke-width="5"/><circle cx="407" cy="575" r="6" fill="#4285F4"/>
+      <text x="442" y="583" font-size="24" fill="#202124">t = 4.04e-4 s</text>
+      <line x1="706" y1="575" x2="752" y2="575" stroke="#34A853" stroke-width="5"/><circle cx="729" cy="575" r="6" fill="#34A853"/>
+      <text x="764" y="583" font-size="24" fill="#202124">t = 1.80e-3 s</text>
+      <text x="1060" y="540" font-size="24" fill="#202124">x 位置</text>
+      <text x="104" y="190" font-size="24" fill="#202124">SX (10^6 Pa)</text>
+    </g>
+  </g>
+  <g id="mid-time-evidence" data-pptx-bounds="90 634 1100 58">
+    <text x="94" y="678" font-size="24" fill="#5F6368">t=1.02e-3 s：x=0.05/0.15/0.45/0.65 的 SX 为 -2.46/-2.83/-3.59/-3.22 ×10⁷ Pa。</text>
+  </g>
+</svg>

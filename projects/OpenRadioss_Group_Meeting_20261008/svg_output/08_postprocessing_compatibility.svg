@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">Python GUI 与应力后处理</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="python-gui" data-pptx-bounds="82 170 514 360">
+    <text x="88" y="214" font-size="32" font-weight="bold" fill="#4285F4">Python / Tk 图形界面</text>
+    <text x="88" y="266" font-size="24" fill="#202124">选择 .rad / .k / .inp 算例</text>
+    <text x="88" y="312" font-size="24" fill="#202124">设置线程数与 MPI 进程</text>
+    <path d="M90 340 C216 334 390 347 558 339" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+    <text x="90" y="392" font-size="24" fill="#202124">提交任务 · 查看与管理队列</text>
+    <text x="90" y="434" font-size="24" fill="#202124">动画转 VTK · 时程转 CSV</text>
+    <text x="90" y="496" font-size="24" font-weight="bold" fill="#4285F4">求解与结果转换入口</text>
+  </g>
+  <g id="stress-postprocessing" data-pptx-bounds="674 170 524 360">
+    <text x="680" y="214" font-size="32" font-weight="bold" fill="#34A853">应力分析与云图</text>
+    <text x="680" y="266" font-size="24" fill="#202124">HyperView 读取 RADIOSS A 动画</text>
+    <text x="680" y="312" font-size="24" fill="#202124">Stress 张量：SX / SY / SZ 等</text>
+    <path d="M682 340 C820 334 990 347 1158 339" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="682" y="392" font-size="24" fill="#202124">Von Mises · Plastic Strain</text>
+    <text x="682" y="434" font-size="24" fill="#202124">多单元结果可见空间应力梯度</text>
+    <text x="682" y="496" font-size="24" font-weight="bold" fill="#34A853">支持应力分布分析与云图查看</text>
+  </g>
+  <g id="postprocessing-compatibility" data-pptx-bounds="88 558 1098 132">
+    <text x="92" y="590" font-size="24" font-weight="bold" fill="#202124">结果链路</text>
+    <text x="230" y="590" font-size="24" fill="#5F6368">Python GUI 提交求解 → A 动画 / 时程转换 → HyperView 分析</text>
+    <text x="92" y="632" font-size="24" fill="#5F6368">H3D v24 在 HW14 下不可读；较新 HyperWorks 可查看 KF 内部变量。</text>
+    <text x="92" y="670" font-size="22" fill="#5F6368">适用算例：KF 单砖 · J2 基线 · KF 多单元轴压</text>
+  </g>
+</svg>

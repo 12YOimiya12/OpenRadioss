@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">MinGW gfortran 求解器构建</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="build-context" data-pptx-bounds="82 158 1070 108">
+    <text x="86" y="190" font-size="24" font-weight="bold" fill="#4285F4">环境约束</text>
+    <text x="86" y="238" font-size="32" fill="#202124">本机没有 Visual Studio，使用仓库 MinGW gfortran 工具链</text>
+  </g>
+  <g id="cmake-fix" data-pptx-bounds="82 282 520 155">
+    <path d="M88 296 C214 290 340 304 516 295" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="88" y="342" font-size="24" font-weight="bold" fill="#202124">构建排错</text>
+    <text x="88" y="388" font-size="24" fill="#202124">CMake 条件比较加引号，</text>
+    <text x="88" y="424" font-size="24" fill="#202124">兼容新版变量解析。</text>
+  </g>
+  <g id="build-output-engine" data-pptx-bounds="675 285 525 120">
+    <text x="680" y="324" font-size="24" fill="#5F6368">Engine</text>
+    <text x="680" y="379" font-size="40" font-weight="bold" fill="#4285F4">36.4 MB</text>
+    <text x="915" y="379" font-size="24" fill="#202124">engine_win64_gf.exe</text>
+  </g>
+  <g id="build-output-starter" data-pptx-bounds="675 414 525 120">
+    <text x="680" y="453" font-size="24" fill="#5F6368">Starter</text>
+    <text x="680" y="508" font-size="40" font-weight="bold" fill="#34A853">23.5 MB</text>
+    <text x="915" y="508" font-size="24" fill="#202124">starter_win64_gf.exe</text>
+  </g>
+  <g id="build-tests" data-pptx-bounds="82 486 500 138">
+    <text x="88" y="522" font-size="24" font-weight="bold" fill="#202124">跑通性检查</text>
+    <text x="88" y="568" font-size="24" fill="#202124">TWISBEAM smoke · LS-DYNA .k 输入</text>
+    <text x="88" y="606" font-size="24" fill="#5F6368">并配置 VS Code 调试启动</text>
+  </g>
+  <g id="build-footnote" data-pptx-bounds="82 638 1080 38">
+    <text x="88" y="664" font-size="18" fill="#5F6368">构建于 2026-09-15；`_gf` 表示 gfortran 版本。</text>
+  </g>
+</svg>

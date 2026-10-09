@@ -53,6 +53,9 @@ extlib.zip
 /liruiw/build/
 /liruiw/build_local/
 
+# Stone_mode KF 混凝土用户材料二次开发：SDK 静态库/DLL/deck 产物/运行输出不提交
+/Stone_mode/build_local/
+
 # 爆炸算例改编尝试（用户决定不需要）与仓库根散落的运行产物
 /demo2/
 /view_kf/

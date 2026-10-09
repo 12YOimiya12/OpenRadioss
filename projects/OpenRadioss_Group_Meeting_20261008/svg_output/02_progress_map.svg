@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">本月工作的三阶段进展</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="phase-build" data-pptx-bounds="75 180 330 390">
+    <circle cx="112" cy="207" r="27" fill="#DCE9FC"/><text x="112" y="217" text-anchor="middle" font-size="24" font-weight="bold" fill="#4285F4">01</text>
+    <text x="154" y="218" font-size="32" font-weight="bold" fill="#202124">本机构建</text>
+    <text x="92" y="278" font-size="24" fill="#5F6368">09-09 — 09-17</text>
+    <path d="M92 302 C176 298 260 307 364 301" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+    <text x="92" y="356" font-size="24" fill="#202124">CMake 排错</text>
+    <text x="92" y="398" font-size="24" fill="#202124">Starter / Engine 构建</text>
+    <text x="92" y="440" font-size="24" fill="#202124">冒烟与输入兼容检查</text>
+    <text x="92" y="512" font-size="24" font-weight="bold" fill="#4285F4">双可执行文件可运行</text>
+  </g>
+  <g id="phase-cases" data-pptx-bounds="462 180 340 390">
+    <circle cx="500" cy="207" r="27" fill="#DDF2E4"/><text x="500" y="217" text-anchor="middle" font-size="24" font-weight="bold" fill="#34A853">02</text>
+    <text x="542" y="218" font-size="32" font-weight="bold" fill="#202124">工程算例</text>
+    <text x="480" y="278" font-size="24" fill="#5F6368">09-22 — 09-25</text>
+    <path d="M480 302 C574 296 676 309 770 301" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="480" y="356" font-size="24" fill="#202124">鸟撞风挡自然终止</text>
+    <text x="480" y="398" font-size="24" fill="#202124">101 帧动画</text>
+    <text x="480" y="440" font-size="24" fill="#202124">气囊展开生成 61 帧</text>
+    <text x="480" y="512" font-size="24" font-weight="bold" fill="#34A853">实际问题规模运行</text>
+  </g>
+  <g id="phase-law99" data-pptx-bounds="858 180 350 390">
+    <circle cx="896" cy="207" r="27" fill="#FFF1C9"/><text x="896" y="217" text-anchor="middle" font-size="24" font-weight="bold" fill="#A16A00">03</text>
+    <text x="938" y="218" font-size="32" font-weight="bold" fill="#202124">KF LAW99</text>
+    <text x="876" y="278" font-size="24" fill="#5F6368">09-27 — 09-30</text>
+    <path d="M876 302 C970 295 1070 309 1182 301" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="876" y="356" font-size="24" fill="#202124">MinGW 本机适配</text>
+    <text x="876" y="398" font-size="24" fill="#202124">材料点与单砖验证</text>
+    <text x="876" y="440" font-size="24" fill="#202124">动画 / H3D 后处理</text>
+    <text x="876" y="512" font-size="24" font-weight="bold" fill="#A16A00">数值闭环已建立</text>
+  </g>
+  <g id="progress-footer" data-pptx-bounds="76 626 1110 44">
+    <text x="80" y="655" font-size="24" fill="#5F6368">重点：已验证软件接口与数值流程；材料预测能力仍待实验标定和模型完善。</text>
+  </g>
+</svg>

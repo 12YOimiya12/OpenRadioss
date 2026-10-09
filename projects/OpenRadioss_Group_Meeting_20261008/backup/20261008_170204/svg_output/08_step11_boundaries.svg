@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">Step 11 清单的认证边界</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="passed-gates" data-pptx-bounds="82 166 515 390">
+    <text x="88" y="210" font-size="32" font-weight="bold" fill="#34A853">4 项 PASS</text>
+    <path d="M90 232 C214 226 372 239 554 231" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="90" y="286" font-size="24" fill="#202124">DLL 材料点矩阵</text>
+    <text x="90" y="334" font-size="24" fill="#202124">P-alpha EOS 一致性</text>
+    <text x="90" y="382" font-size="24" fill="#202124">材料点步长敏感性</text>
+    <text x="90" y="430" font-size="24" fill="#202124">OpenRadioss 单砖 smoke 与 T01</text>
+  </g>
+  <g id="not-certified-gates" data-pptx-bounds="666 166 530 390">
+    <text x="672" y="210" font-size="32" font-weight="bold" fill="#A16A00">3 项 NOT_CERTIFIED</text>
+    <path d="M674 232 C810 226 974 239 1156 231" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="674" y="286" font-size="24" font-weight="bold" fill="#202124">率效应标定</text>
+    <text x="674" y="324" font-size="24" fill="#5F6368">需 SHPB 等动态实验数据</text>
+    <text x="674" y="378" font-size="24" font-weight="bold" fill="#202124">冲击基准</text>
+    <text x="674" y="416" font-size="24" fill="#5F6368">需试验数据或对照 FE 案例</text>
+    <text x="674" y="470" font-size="24" font-weight="bold" fill="#202124">网格客观性</text>
+    <text x="674" y="508" font-size="24" fill="#5F6368">损伤缺少特征长度 / 断裂能正则化</text>
+  </g>
+  <g id="certification-interpretation" data-pptx-bounds="92 590 1090 70">
+    <rect x="92" y="590" width="1080" height="58" rx="8" fill="#FFF1C9"/>
+    <text x="114" y="628" font-size="24" font-weight="bold" fill="#202124">NOT_CERTIFIED 是预期的证据缺口，不是本机迁移失败。</text>
+  </g>
+</svg>

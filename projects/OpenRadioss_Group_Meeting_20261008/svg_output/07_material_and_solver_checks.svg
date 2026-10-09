@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">材料点与单砖验证结果</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="material-point-results" data-pptx-bounds="82 172 530 432">
+    <text x="88" y="214" font-size="24" font-weight="bold" fill="#202124">DLL 材料点矩阵</text>
+    <text x="88" y="298" font-size="56" font-weight="bold" fill="#34A853">8 / 8</text>
+    <text x="88" y="336" font-size="24" fill="#5F6368">检查全部 PASS</text>
+    <path d="M90 360 C230 354 380 367 562 359" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="90" y="408" font-size="24" fill="#202124">静水压缩 · 单轴压缩 / 拉伸</text>
+    <text x="90" y="450" font-size="24" fill="#202124">简单剪切 · 客观性</text>
+    <text x="90" y="492" font-size="24" fill="#202124">应变率效应 · 冲击率扫描</text>
+    <text x="90" y="534" font-size="24" fill="#202124">大静水压缩</text>
+    <text x="90" y="586" font-size="24" font-weight="bold" fill="#4285F4">P-alpha 压力误差 = 0</text>
+  </g>
+  <g id="single-brick-result" data-pptx-bounds="674 172 524 432">
+    <text x="680" y="214" font-size="24" font-weight="bold" fill="#202124">OpenRadioss 单砖求解</text>
+    <text x="680" y="290" font-size="32" font-weight="bold" fill="#34A853">Starter · 0 ERROR(S)</text>
+    <text x="680" y="338" font-size="24" fill="#202124">Engine · NORMAL TERMINATION</text>
+    <text x="680" y="388" font-size="24" fill="#202124">8 cycles · T01 CSV 4 × 55</text>
+    <path d="M682 416 C816 410 968 423 1154 415" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+    <text x="682" y="466" font-size="24" fill="#202124">Step 11 自动门：4 PASS / 3 NOT_CERTIFIED</text>
+    <text x="682" y="512" font-size="24" fill="#5F6368">未认证项依赖实验、冲击基准或正则化证据。</text>
+    <text x="682" y="570" font-size="24" font-weight="bold" fill="#202124">这里验证的是接口和数值闭环</text>
+  </g>
+  <g id="verification-qualification" data-pptx-bounds="88 628 1090 54">
+    <text x="92" y="663" font-size="24" fill="#5F6368">并不等于实验标定，也不等于复杂冲击算例验证。</text>
+  </g>
+</svg>

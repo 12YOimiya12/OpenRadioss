@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "phase": "template",
+  "status": "confirmed",
+  "mode": "templates",
+  "selections": [
+    {
+      "source": "library",
+      "kind": "brand",
+      "id": "google",
+      "workspace_root": "C:\\Users\\umiya\\.codex\\skills\\ppt-master\\templates\\brands\\google"
+    },
+    {
+      "source": "library",
+      "kind": "layout",
+      "id": "moments_square",
+      "workspace_root": "C:\\Users\\umiya\\.codex\\skills\\ppt-master\\templates\\layouts\\moments_square"
+    },
+    {
+      "source": "library",
+      "kind": "style",
+      "id": "academic-research",
+      "workspace_root": "C:\\Users\\umiya\\.codex\\skills\\ppt-master\\templates\\styles\\academic-research"
+    }
+  ],
+  "options_sha256": "353eb78fc6ab3b24291292c98b5ef2aa3c718421d666a5fa0a0fb2c96bdfe255",
+  "selection_sha256": "d1d824745bf0aa14f25cd7381e75269bb544703da4534fb84d502aeeac97e0e1",
+  "confirmed_at": "2026-10-08T16:23:03"
+}

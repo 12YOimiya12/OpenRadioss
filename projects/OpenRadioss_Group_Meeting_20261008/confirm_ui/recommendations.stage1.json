@@ -1,0 +1,29 @@
+{
+  "stage": "stage1",
+  "lang": "zh",
+  "primary_language": "zh-CN",
+  "recommend": {
+    "canvas": "ppt169"
+  },
+  "audience": {
+    "value": "课题组成员与导师，具备计算力学和有限元仿真基础"
+  },
+  "communication_intent": {
+    "value": "按工作递进汇报本月进展：先说明 OpenRadioss 本机构建与基础跑通，再展示工程算例，重点讲清 KF LAW99 从工具链迁移、数值验证到可视化后处理的闭环，并区分已验证内容与尚待验证的研究问题。"
+  },
+  "audience_outcome": {
+    "value": "听众能够复述本月完成的技术闭环、判断各项验证结论的适用边界，并对下一阶段的参数标定、损伤正则化等工作形成共同认识。"
+  },
+  "core_message": {
+    "value": "一个月内，工作从 OpenRadioss 本机可构建推进到 KF LAW99 可编译、可验证、可求解并可后处理；当前证明的是软件接口与数值闭环，材料预测能力仍需实验标定和模型完善。"
+  },
+  "delivery_context": {
+    "value": "课题组现场口头汇报，预计 10–15 分钟并留出讨论时间；会后作为阶段进展记录。"
+  },
+  "artifact_afterlife": {
+    "value": "供组会讨论、阶段工作归档及后续任务交接；关键数值和未完成项需能独立阅读。"
+  },
+  "content_divergence": {
+    "value": "以 summary.md 为事实边界，突出三阶段主线与关键证据；压缩命令、路径和配置细节。准确标注气囊算例在 A042 处手工中断，勿表述为自然终止；区分 8/8 材料点检查与 3 项 NOT_CERTIFIED，不把接口闭环等同于实验标定或复杂冲击验证。"
+  }
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">下一阶段工作安排</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="priority-validation" data-pptx-bounds="86 160 1100 145">
+    <circle cx="112" cy="205" r="24" fill="#DCE9FC"/><text x="112" y="214" text-anchor="middle" font-size="24" font-weight="bold" fill="#4285F4">1</text>
+    <text x="158" y="211" font-size="32" font-weight="bold" fill="#202124">实验参数标定</text>
+    <text x="158" y="260" font-size="24" fill="#5F6368">静态压缩 / 拉伸 / 三轴与 SHPB 数据 → 确认模型参数</text>
+    <path d="M160 284 C402 277 694 291 1128 282" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="priority-regularization" data-pptx-bounds="86 322 1100 132">
+    <circle cx="112" cy="363" r="24" fill="#DDF2E4"/><text x="112" y="372" text-anchor="middle" font-size="24" font-weight="bold" fill="#34A853">2</text>
+    <text x="158" y="370" font-size="32" font-weight="bold" fill="#202124">损伤正则化与网格客观性</text>
+    <text x="158" y="418" font-size="24" fill="#5F6368">引入特征长度或断裂能，再用多网格结果检查软化响应。</text>
+  </g>
+  <g id="priority-expansion" data-pptx-bounds="86 472 1100 124">
+    <circle cx="112" cy="509" r="24" fill="#FFF1C9"/><text x="112" y="518" text-anchor="middle" font-size="24" font-weight="bold" fill="#A16A00">3</text>
+    <text x="158" y="516" font-size="32" font-weight="bold" fill="#202124">按研究需求扩展与维护</text>
+    <text x="158" y="560" font-size="24" fill="#5F6368">评估有限应变、H3D UVAR 查看条件，补充构建门并提交工作区改动。</text>
+  </g>
+  <g id="closing-message" data-pptx-bounds="94 612 1090 64">
+    <path d="M96 616 C324 609 602 622 852 614" fill="none" stroke="#FBBC05" stroke-width="5" stroke-linecap="round"/>
+    <text x="98" y="660" font-size="24" font-weight="bold" fill="#202124">数值闭环已建立；下一步验证模型是否代表真实材料。</text>
+  </g>
+</svg>

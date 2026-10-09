@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="ending" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 112">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">下一阶段：VS2022 环境适配</text>
+    <text x="76" y="126" font-size="24" fill="#5F6368">目标：复现 OpenRadioss 构建，并复验 LAW99 用户本构闭环</text>
+    <path d="M76 146 C260 140 420 151 594 144" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="adaptation-roadmap" data-pptx-bounds="78 190 1120 360">
+    <path d="M132 238 C412 232 690 245 1116 237" fill="none" stroke="#DADCE0" stroke-width="5"/>
+    <circle cx="142" cy="238" r="22" fill="#DCE9FC"/><text x="142" y="247" text-anchor="middle" font-size="24" font-weight="bold" fill="#4285F4">1</text>
+    <circle cx="632" cy="238" r="22" fill="#DDF2E4"/><text x="632" y="247" text-anchor="middle" font-size="24" font-weight="bold" fill="#34A853">2</text>
+    <circle cx="1100" cy="238" r="22" fill="#FFF1C9"/><text x="1100" y="247" text-anchor="middle" font-size="24" font-weight="bold" fill="#A16A00">3</text>
+    <text x="92" y="306" font-size="32" font-weight="bold" fill="#202124">配置工具链</text>
+    <text x="92" y="356" font-size="24" fill="#5F6368">VS2022 · CMake</text>
+    <text x="92" y="398" font-size="24" fill="#202124">核对编译器与依赖</text>
+    <text x="92" y="444" font-size="24" fill="#202124">确定可复现配置</text>
+    <path d="M92 474 C190 468 306 481 424 473" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+    <text x="502" y="306" font-size="32" font-weight="bold" fill="#202124">构建求解器</text>
+    <text x="502" y="356" font-size="24" fill="#5F6368">Starter + Engine</text>
+    <text x="502" y="398" font-size="24" fill="#202124">处理平台配置差异</text>
+    <text x="502" y="444" font-size="24" fill="#202124">检查构建与启动状态</text>
+    <path d="M502 474 C602 468 718 481 834 473" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="872" y="306" font-size="32" font-weight="bold" fill="#202124">复验 LAW99</text>
+    <text x="872" y="356" font-size="24" fill="#5F6368">重建用户库</text>
+    <text x="872" y="398" font-size="24" fill="#202124">重跑材料点与求解算例</text>
+    <text x="872" y="444" font-size="24" fill="#202124">对照当前 MinGW 结果</text>
+    <path d="M872 474 C970 468 1084 481 1182 473" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="adaptation-deliverable" data-pptx-bounds="90 568 1090 90">
+    <rect x="92" y="568" width="1080" height="68" rx="8" fill="#F8F9FA"/>
+    <text x="118" y="612" font-size="24" font-weight="bold" fill="#202124">交付：可复现的 VS2022 构建步骤、平台差异记录与回归结果</text>
+  </g>
+</svg>

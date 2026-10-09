@@ -5,7 +5,10 @@ rem  output enabled, so the results can be opened in HyperView.
 rem
 rem  Uses view_kf\kf_law99_0000.rad (byte-identical copy of the project's
 rem  starter deck) and view_kf\kf_law99_0001.rad (the project's engine deck plus
-rem  /ANIM/VECT/DIS and /H3D cards).  Model and material are unchanged.
+rem  /ANIM/VECT/DIS, stress and /H3D cards).  Model and material are unchanged.
+rem
+rem  All results are written inside the project (build_local\view_kf).  The
+rem  project folder name is ASCII, so HyperView can open them directly.
 rem
 rem  Pure ASCII on purpose (cmd.exe reads .bat in the OEM codepage).
 rem  Run from cmd.exe or by double-clicking, not from Git Bash.
@@ -16,11 +19,6 @@ cd /d "%~dp0"
 rem  ---- CONFIG - edit these when moving to a new machine --------------------
 if not defined KF_MINGW set "KF_MINGW=G:\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\mingw64"
 if not defined KF_REPO  set "KF_REPO=%~dp0.."
-if not defined HW14_HOME set "HW14_HOME=G:\Program Files\hyperwork"
-rem  HyperWorks 14 (2015) mishandles non-ASCII paths - it fails to load results
-rem  that live under a folder whose name has Chinese characters.  Results are
-rem  therefore mirrored to this ASCII-only folder for viewing.
-if not defined KF_VIEW_OUT set "KF_VIEW_OUT=%USERPROFILE%\kf_view_out"
 rem  -------------------------------------------------------------------------
 
 for %%I in ("%KF_REPO%") do set "REPO=%%~fI"
@@ -84,22 +82,10 @@ echo ============================================================
 echo ENGINE_EXIT=%errorlevel%
 
 echo.
-echo ============================================================
-echo  Step 4/4  Mirror results to an ASCII-only path
-echo ============================================================
-rem  HyperWorks 14 cannot load results from a path containing Chinese
-rem  characters, so copy them somewhere ASCII-clean for viewing.
-if not exist "%KF_VIEW_OUT%" mkdir "%KF_VIEW_OUT%"
-copy /y kf_law99A* "%KF_VIEW_OUT%" >nul
-copy /y kf_law99.h3d "%KF_VIEW_OUT%" >nul 2>&1
-copy /y kf_law99T01 "%KF_VIEW_OUT%" >nul 2>&1
-echo Mirrored to: %KF_VIEW_OUT%
-
-echo.
 echo  Run dir   : %RUN%
-echo  OPEN THIS : %KF_VIEW_OUT%\kf_law99A001
+echo  OPEN THIS : %RUN%\kf_law99A001
 echo              (HyperView: File ^> Open ^> Results; pick RADIOSS (A) Result Reader)
-echo  H3D       : kf_law99.h3d (needs a newer HyperWorks; v24 format)
+echo  H3D       : %RUN%\kf_law99.h3d (needs a newer HyperWorks; v24 format)
 echo  Logs      : %RUN%\starter.log / engine.log
 
 :done

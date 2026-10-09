@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="cover" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="cover-title" data-pptx-bounds="86 110 1080 230">
+    <text x="92" y="190" font-size="24" font-weight="bold" fill="#4285F4">组会汇报 · 2026.09—10</text>
+    <text x="88" y="278" font-size="56" font-weight="bold" fill="#202124">OpenRadioss 本机二次开发进展</text>
+    <path d="M92 305 C260 295 420 315 590 304 C710 297 810 309 908 301" fill="none" stroke="#FBBC05" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g id="cover-thesis" data-pptx-bounds="90 348 1010 136">
+    <text x="94" y="380" font-size="32" fill="#202124">从源码能编译，推进到用户本构可运行并可后处理</text>
+    <text x="96" y="432" font-size="24" fill="#5F6368">统计区间 2026-09-08 至 2026-10-08　·　9 次提交</text>
+  </g>
+  <g id="cover-roadmap" data-pptx-bounds="92 520 1090 88">
+    <path d="M106 556 C330 550 510 563 735 556 C900 551 1030 560 1165 554" fill="none" stroke="#DADCE0" stroke-width="3"/>
+    <circle cx="128" cy="556" r="13" fill="#4285F4"/><circle cx="628" cy="556" r="13" fill="#34A853"/><circle cx="1110" cy="556" r="13" fill="#FBBC05"/>
+    <text x="158" y="565" font-size="24" fill="#202124">本机构建</text>
+    <text x="658" y="565" font-size="24" fill="#202124">工程算例</text>
+    <text x="844" y="565" font-size="24" fill="#202124">KF LAW99 验证与后处理</text>
+  </g>
+  <g id="cover-footer" data-pptx-bounds="92 646 1100 40">
+    <text x="94" y="672" font-size="18" fill="#5F6368">计算力学课题组 · OpenRadioss</text>
+  </g>
+</svg>

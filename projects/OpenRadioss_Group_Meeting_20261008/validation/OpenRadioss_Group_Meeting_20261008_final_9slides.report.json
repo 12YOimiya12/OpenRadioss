@@ -1,0 +1,243 @@
+{
+  "schema": "ppt-master.pptx-postflight-report.v1",
+  "status": "passed-with-warnings",
+  "output": {
+    "path": "G:\\Postgraduate_Researching\\openSource_soft\\OpenRadioss\\projects\\OpenRadioss_Group_Meeting_20261008\\exports\\OpenRadioss_Group_Meeting_20261008_final_9slides.pptx",
+    "bytes": 52021
+  },
+  "source": {
+    "svg_slide_count": 9,
+    "layout_definition_count": 0,
+    "fingerprint": {
+      "algorithm": "sha256",
+      "digest": "f338420a3b26456621c4a052172dd51e2fbd3543897c3c94e97d392aa46d31ff",
+      "file_count": 9,
+      "files": [
+        {
+          "file": "01_cover.svg",
+          "sha256": "5ca2a587ac0200970978dc8366d501437740c9d1eb04017520f6a609cc484682"
+        },
+        {
+          "file": "02_progress_map.svg",
+          "sha256": "3c20ef4aabf8eabbefa14d5f18ee770fda6ad6e203790c3d4a1273aa99b3c805"
+        },
+        {
+          "file": "03_solver_build.svg",
+          "sha256": "8acdc88e20d4d90d7dbd2ce672641501f2d8770560a88f9004aac15ed57dab3c"
+        },
+        {
+          "file": "04_engineering_cases.svg",
+          "sha256": "0626124971ee287dc926e339883d1b56b7c01d92eb0f865966e1a6e7edd678bf"
+        },
+        {
+          "file": "05_kf_law99_interface.svg",
+          "sha256": "0410f0fb9bf49d7775837c50ed3baf4105e791f9df0aa35ed092489b526199a3"
+        },
+        {
+          "file": "06_local_validation_flow.svg",
+          "sha256": "52496aa4b3e79740a90bed4b6344337317b96c25cf34b259216cf39364c3d10e"
+        },
+        {
+          "file": "07_material_and_solver_checks.svg",
+          "sha256": "a93f4bc930fc850d2825f364fef4c7717d9f8a0e604ec4384dc751a47fd23a6c"
+        },
+        {
+          "file": "08_postprocessing_compatibility.svg",
+          "sha256": "af32517c275dbcd2b0011a56e168c3662e6a1a9bea00749175eb874e4e4a9ab2"
+        },
+        {
+          "file": "09_vs2022_adaptation.svg",
+          "sha256": "2116fbdc1ab9aad276c70902fd0dc746e171ba16e2c5a8a3ecf4e4d8e240dc1b"
+        }
+      ]
+    },
+    "authoring_roundtrip": null
+  },
+  "package": {
+    "zip_integrity": "passed",
+    "corrupt_member": null,
+    "slides": 9,
+    "notes": 9,
+    "masters": 1,
+    "layouts": 1
+  },
+  "checks": {
+    "zip_integrity": "passed",
+    "slide_count": "passed",
+    "internal_relationships": "enforced-at-build",
+    "structured_package": "not-applicable",
+    "transitions": "enforced-at-build",
+    "animations": "enforced-at-build",
+    "project_svg_contract": "enforced-at-build",
+    "compatibility_normalization": "not-applicable",
+    "authoring_roundtrip": "not-applicable",
+    "quality_gate": "passed",
+    "quality_warnings": "warning",
+    "template_tokens": "passed",
+    "external_images": "passed",
+    "font_portability": "passed"
+  },
+  "quality": {
+    "status": "loaded",
+    "path": "projects\\OpenRadioss_Group_Meeting_20261008\\validation\\svg_quality_report.json",
+    "schema": "ppt-master.svg-quality-report.v1",
+    "stage": "final",
+    "source_match": "passed",
+    "source_fingerprint": {
+      "algorithm": "sha256",
+      "digest": "f338420a3b26456621c4a052172dd51e2fbd3543897c3c94e97d392aa46d31ff",
+      "file_count": 9,
+      "files": [
+        {
+          "file": "01_cover.svg",
+          "sha256": "5ca2a587ac0200970978dc8366d501437740c9d1eb04017520f6a609cc484682"
+        },
+        {
+          "file": "02_progress_map.svg",
+          "sha256": "3c20ef4aabf8eabbefa14d5f18ee770fda6ad6e203790c3d4a1273aa99b3c805"
+        },
+        {
+          "file": "03_solver_build.svg",
+          "sha256": "8acdc88e20d4d90d7dbd2ce672641501f2d8770560a88f9004aac15ed57dab3c"
+        },
+        {
+          "file": "04_engineering_cases.svg",
+          "sha256": "0626124971ee287dc926e339883d1b56b7c01d92eb0f865966e1a6e7edd678bf"
+        },
+        {
+          "file": "05_kf_law99_interface.svg",
+          "sha256": "0410f0fb9bf49d7775837c50ed3baf4105e791f9df0aa35ed092489b526199a3"
+        },
+        {
+          "file": "06_local_validation_flow.svg",
+          "sha256": "52496aa4b3e79740a90bed4b6344337317b96c25cf34b259216cf39364c3d10e"
+        },
+        {
+          "file": "07_material_and_solver_checks.svg",
+          "sha256": "a93f4bc930fc850d2825f364fef4c7717d9f8a0e604ec4384dc751a47fd23a6c"
+        },
+        {
+          "file": "08_postprocessing_compatibility.svg",
+          "sha256": "af32517c275dbcd2b0011a56e168c3662e6a1a9bea00749175eb874e4e4a9ab2"
+        },
+        {
+          "file": "09_vs2022_adaptation.svg",
+          "sha256": "2116fbdc1ab9aad276c70902fd0dc746e171ba16e2c5a8a3ecf4e4d8e240dc1b"
+        }
+      ]
+    },
+    "summary": {
+      "total": 9,
+      "passed": 3,
+      "warnings": 6,
+      "errors": 0
+    },
+    "categories": {
+      "blocking": {
+        "count": 0,
+        "issues": []
+      },
+      "introduced": {
+        "count": 9,
+        "issues": [
+          {
+            "file": "02_progress_map.svg",
+            "message": "Detected 3 paragraph-like line run(s) split across sibling <text> elements (<g id=\"phase-build\"> x=92.0, y=356.0..440.0, 3 lines; <g id=\"phase-cases\"> x=480.0, y=356.0..440.0, 3 lines; <g id=\"phase-law99\"> x=876.0, y=356.0..440.0, 3 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+          },
+          {
+            "file": "03_solver_build.svg",
+            "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (4 change(s)); examples: build-tests:font-size None -> '24'; text[23]:font-size '24' -> None; text[24]:font-size '24' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace` and rerun the final gate, or leave the explicit form)"
+          },
+          {
+            "file": "03_solver_build.svg",
+            "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"cmake-fix\"> x=88.0, y=388.0..424.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+          },
+          {
+            "file": "06_local_validation_flow.svg",
+            "message": "Noncanonical compact authoring: Authoring SVG contains noncanonical or redundant inherited style declarations (5 change(s)); examples: runtime-compatibility:font-size None -> '24'; text[22]:font-size '24' -> None; text[23]:font-size '24' -> None (advisory; normalize with `python3 scripts/compact_svg_styles.py <svg_output> --inplace` and rerun the final gate, or leave the explicit form)"
+          },
+          {
+            "file": "06_local_validation_flow.svg",
+            "message": "<text> (x=92, y=640; text='脚本自动检查工具链与转换器路径；编译或验…') exceeds <g id=\"runtime-compatibility\"> data-pptx-bounds on the vertical axis: content (92.0, 619.6)-(778.9, 648.4), container (88.0, 466.0)-(1188.0, 640.0), overflow horizontal 0.0%, vertical 4.8% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text"
+          },
+          {
+            "file": "07_material_and_solver_checks.svg",
+            "message": "<text> (x=682, y=466; text='Step 11 自动门：4 PASS /…') exceeds <g id=\"single-brick-result\"> data-pptx-bounds on the horizontal axis: content (682.0, 445.6)-(1209.9, 474.4), container (674.0, 172.0)-(1198.0, 604.0), overflow horizontal 2.3%, vertical 0.0% (error above 5%); expand the root module bounds into available non-overlapping space; otherwise reflow the text; ≈17.6 px per mixed char at 24px incl. headroom; ≈29 chars fit in 524 px"
+          },
+          {
+            "file": "07_material_and_solver_checks.svg",
+            "message": "Detected 1 paragraph-like line run(s) split across sibling <text> elements (<g id=\"material-point-results\"> x=90.0, y=408.0..534.0, 4 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+          },
+          {
+            "file": "08_postprocessing_compatibility.svg",
+            "message": "Detected 4 paragraph-like line run(s) split across sibling <text> elements (<g id=\"python-gui\"> x=88.0, y=266.0..312.0, 2 lines; <g id=\"python-gui\"> x=90.0, y=392.0..434.0, 2 lines; <g id=\"stress-postprocessing\"> x=680.0, y=266.0..312.0, 2 lines; +1 more). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+          },
+          {
+            "file": "09_vs2022_adaptation.svg",
+            "message": "Detected 3 paragraph-like line run(s) split across sibling <text> elements (<g id=\"adaptation-roadmap\"> x=92.0, y=398.0..444.0, 2 lines; <g id=\"adaptation-roadmap\"> x=502.0, y=398.0..444.0, 2 lines; <g id=\"adaptation-roadmap\"> x=872.0, y=398.0..444.0, 2 lines). If each run is one prose paragraph, combine it into one <text>: keep its first line as direct text and use direct <tspan> children with the parent x and positive relative dy values for later lines. An all-<tspan> form may start with dy=\"0\". Keep semantically independent text frames separate."
+          }
+        ]
+      },
+      "inherited": {
+        "count": 0,
+        "issues": []
+      },
+      "source-import": {
+        "count": 0,
+        "summary": {
+          "warning_count": 0,
+          "by_code": {}
+        }
+      }
+    }
+  },
+  "resources": {
+    "unresolved_template_tokens": [],
+    "fonts": {
+      "stacks": [
+        "Microsoft YaHei, Segoe UI, sans-serif"
+      ],
+      "generic_only_stacks": [],
+      "unsafe_exported_faces": []
+    },
+    "images": {
+      "data_uri": 0,
+      "local": 0,
+      "external": 0,
+      "external_references": []
+    }
+  },
+  "export_policy": {
+    "project_svg_contract": "strict",
+    "dangerous_normalization_count": 0
+  },
+  "deck_motion": {
+    "transition": {
+      "effect": null,
+      "effect_options": {},
+      "duration": 0.4,
+      "auto_advance": null,
+      "sound": null
+    },
+    "animation": {
+      "effect": "none",
+      "effect_request": null,
+      "duration": 0.4,
+      "stagger": 0.5,
+      "trigger": "after-previous"
+    },
+    "cli_overrides": {
+      "transition": false,
+      "transition_duration": false,
+      "auto_advance": false,
+      "transition_sound": false,
+      "animation": false,
+      "animation_duration": false,
+      "animation_stagger": false,
+      "animation_trigger": false
+    },
+    "narration_timings": false
+  },
+  "backup_path": null,
+  "conversion_trace_path": null
+}

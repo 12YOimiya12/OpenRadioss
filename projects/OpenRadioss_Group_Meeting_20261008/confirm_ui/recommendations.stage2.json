@@ -1,0 +1,176 @@
+{
+  "stage": "stage2",
+  "lang": "zh",
+  "recommend": {
+    "delivery_purpose": "balanced",
+    "mode": "custom",
+    "visual_style": "custom",
+    "image_strategy": "custom",
+    "image_usage": ["none"],
+    "generation_mode": "continuous"
+  },
+  "page_count": {
+    "value": "12"
+  },
+  "image_notes": {
+    "value": "不使用装饰性栅格图片；求解链路、验证结果和多单元应力分布以可编辑原生图形表达。"
+  },
+  "proactive_speaker_notes": {
+    "value": true
+  },
+  "proactive_custom_animations": {
+    "value": false
+  },
+  "proactive_narration_audio": {
+    "value": false
+  },
+  "refine_spec": {
+    "value": false
+  },
+  "design_spec_depth": {
+    "value": "brief"
+  },
+  "template_application": {
+    "value": "保留已确认的 16:9 画布，采用 Academic Research 的证据链与限制说明；使用 Google 蓝、绿、黄作为克制的视觉色彩参考，但不放置 Google 字标或 G 标，避免暗示品牌关联。Moments Square 仅参考其清晰的标题区与内容分区，不复用方形 Master、Layout 或原型 SVG；所有页面按 OpenRadioss 内容重新组织为横向自由版式并以平面结构导出，跳过其图片中心与全幅图片原型。"
+  },
+  "design_directions": {
+    "selected": 1,
+    "candidates": [
+      {
+        "id": "research-progress",
+        "name": "研究进展",
+        "note": "以研究汇报的证据链组织 12 页：先交代本月主结论，再按构建、工程算例、LAW99 验证展开，最后单独呈现能力边界和下一步。",
+        "mode": "custom",
+        "mode_references": ["instructional", "pyramid"],
+        "mode_behavior": "按 Academic Research 的方法组织问题、实现路径、实际结果与解释；标题尽量陈述本页结论，结论必须能追溯到页内证据。沿先总览、后分阶段、再限制的顺序推进，保留每项验证的适用边界。",
+        "visual_style": "custom",
+        "visual_style_references": ["swiss-minimal"],
+        "visual_style_behavior": "以 swiss-minimal 的严格栅格、大留白和少量直线分区建立稳定阅读路径；主要证据用原生结构图与数字排布，颜色只标记阶段或结果状态，避免卡片墙、渐变和阴影。",
+        "icons": "none",
+        "color": {
+          "name": "克制的 Google 色彩参考",
+          "palette": {
+            "background": "#FFFFFF",
+            "secondary_bg": "#F8F9FA",
+            "primary": "#4285F4",
+            "accent": "#34A853",
+            "secondary_accent": "#FBBC05",
+            "body_text": "#202124"
+          }
+        },
+        "typography": {
+          "name": "Microsoft YaHei + Segoe UI",
+          "fixed": true,
+          "heading": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body_size": 24
+        },
+        "image_strategy": {
+          "name": "原生证据图形",
+          "rendering": "custom",
+          "visual": "用清晰的原生线条、区块和数值标注呈现求解流程与验证证据，不添加栅格插图。",
+          "mood": "审慎、可核查，像一份面向同行的工程研究进展报告。",
+          "behavior": "不生成或嵌入图片；所有可视化均作为可编辑 SVG 几何、文字和数据标记绘制，保持平面、留白和高对比。"
+        }
+      },
+      {
+        "id": "workflow-first",
+        "name": "工程闭环",
+        "note": "强化从本机构建到求解再到后处理的连续工作流，适合讨论工程链条如何落地；数值结果仍与未认证事项分开呈现。",
+        "mode": "custom",
+        "mode_references": ["instructional", "pyramid"],
+        "mode_behavior": "按照前置条件到依赖结果逐步展开：先说明求解器构建，再说明工程算例和用户材料接入，最后呈现验证与后处理。每页仍以可核查的结论开头，并注明结果来自哪个步骤。",
+        "visual_style": "custom",
+        "visual_style_references": ["swiss-minimal"],
+        "visual_style_behavior": "采用 swiss-minimal 的精确栅格和开放留白，将主要视觉重心放在跨页连续的流程结构；蓝绿黄只用于区分工具、求解和验证环节，不使用装饰性阴影或渐变。",
+        "icons": "none",
+        "color": {
+          "name": "克制的 Google 色彩参考",
+          "palette": {
+            "background": "#FFFFFF",
+            "secondary_bg": "#F8F9FA",
+            "primary": "#4285F4",
+            "accent": "#34A853",
+            "secondary_accent": "#FBBC05",
+            "body_text": "#202124"
+          }
+        },
+        "typography": {
+          "name": "Microsoft YaHei + Segoe UI",
+          "fixed": true,
+          "heading": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body_size": 24
+        },
+        "image_strategy": {
+          "name": "原生工作流图形",
+          "rendering": "custom",
+          "visual": "以可编辑的流程线、阶段标记和局部求解输出符号表达计算链条，不使用装饰图片。",
+          "mood": "清楚、连续，接近工程系统说明图。",
+          "behavior": "不生成或嵌入图片；通过原生 SVG 线条、几何和文字搭建流程视图，保证颜色语义跨页一致，不使用透视、材质或渐变。"
+        }
+      },
+      {
+        "id": "verification-first",
+        "name": "验证与边界",
+        "note": "更早给出验证结论，再逐项展开材料点、单砖和多单元证据；突出哪些结论已成立、哪些仍需实验或模型工作支持。",
+        "mode": "custom",
+        "mode_references": ["instructional", "pyramid"],
+        "mode_behavior": "先呈现当前能够成立的结论，再将证据分解为材料点、单砖求解和多单元结果，最后并列说明 NOT_CERTIFIED 项及原因。避免把数值通过、物理有效性和预测能力混为一谈。",
+        "visual_style": "custom",
+        "visual_style_references": ["swiss-minimal"],
+        "visual_style_behavior": "以 swiss-minimal 的严格栅格和留白建立结果页秩序；用少量蓝绿黄区分已通过、过程证据和待验证问题，采用清晰对照与边注，不使用容器阴影、渐变或纹理。",
+        "icons": "none",
+        "color": {
+          "name": "克制的 Google 色彩参考",
+          "palette": {
+            "background": "#FFFFFF",
+            "secondary_bg": "#F8F9FA",
+            "primary": "#4285F4",
+            "accent": "#34A853",
+            "secondary_accent": "#FBBC05",
+            "body_text": "#202124"
+          }
+        },
+        "typography": {
+          "name": "Microsoft YaHei + Segoe UI",
+          "fixed": true,
+          "heading": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body": {
+            "primary": "Microsoft YaHei",
+            "english": "Segoe UI",
+            "css": "sans-serif"
+          },
+          "body_size": 24
+        },
+        "image_strategy": {
+          "name": "原生验证图形",
+          "rendering": "custom",
+          "visual": "以数值、分段流程和应力变化的原生图形承载证据，保持图形本身可编辑。",
+          "mood": "客观、可追溯，像同行评审中的结果页。",
+          "behavior": "不生成或嵌入图片；原生 SVG 中区分实测事实、解释和未验证项，使用平面几何与简明标注，不制造实验照片或外部基准。"
+        }
+      }
+    ]
+  }
+}

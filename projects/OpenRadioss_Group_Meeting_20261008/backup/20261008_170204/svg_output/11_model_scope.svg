@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">当前能力与未验证事项</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="capabilities-established" data-pptx-bounds="82 172 526 382">
+    <text x="88" y="216" font-size="32" font-weight="bold" fill="#34A853">已建立的工程闭环</text>
+    <path d="M90 240 C218 234 382 247 568 239" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="90" y="294" font-size="24" fill="#202124">本机 Starter / Engine 可运行</text>
+    <text x="90" y="338" font-size="24" fill="#202124">动态用户库接入与材料点测试</text>
+    <text x="90" y="382" font-size="24" fill="#202124">单砖求解、T01 与动画输出</text>
+    <text x="90" y="426" font-size="24" fill="#202124">多单元模型应力分布可查看</text>
+    <text x="90" y="490" font-size="24" font-weight="bold" fill="#202124">证明接口与数值流程可用</text>
+  </g>
+  <g id="capabilities-open" data-pptx-bounds="674 172 524 382">
+    <text x="680" y="216" font-size="32" font-weight="bold" fill="#A16A00">仍需补充的科学证据</text>
+    <path d="M682 240 C820 234 988 247 1158 239" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="682" y="294" font-size="24" fill="#202124">示例参数尚未用实验标定</text>
+    <text x="682" y="338" font-size="24" fill="#202124">损伤模型无网格正则化</text>
+    <text x="682" y="382" font-size="24" fill="#202124">尚无复杂冲击基准验证</text>
+    <text x="682" y="426" font-size="24" fill="#202124">不是完整有限应变框架</text>
+    <text x="682" y="490" font-size="24" font-weight="bold" fill="#202124">不能据此声称材料可预测</text>
+  </g>
+  <g id="scope-statement" data-pptx-bounds="90 590 1090 70">
+    <rect x="92" y="590" width="1080" height="58" rx="8" fill="#FFF1C9"/>
+    <text x="116" y="628" font-size="24" font-weight="bold" fill="#202124">当前结果验证软件和数值闭环，真实材料能力仍待证据支持。</text>
+  </g>
+</svg>

@@ -451,13 +451,13 @@ HyperView 里查看。
 run_j2_view.bat
 ```
 
-一键完成：编译 J2 用户库 → Starter → Engine → 结果镜像到
-`%USERPROFILE%\j2_view_out\`（纯英文路径，避开 HyperWorks 14 对非 ASCII 路径的兼容问题）。
+一键完成：编译 J2 用户库 → Starter → Engine。结果全部写在项目内
+`build_local\view_j2\`（项目路径已改名为 `liruiw`，是纯英文，HyperView 可以直接读）。
 
 **在 HyperView 里打开：**
 
 ```text
-C:\Users\umiya\j2_view_out\law99_j2A001
+liruiw\build_local\view_j2\law99_j2A001
 ```
 
 File → Open → Results → 读取器选 `RADIOSS (A) Result Reader`，8 帧一起读入。
@@ -480,3 +480,91 @@ Engine  : NORMAL TERMINATION，TOTAL NUMBER OF CYCLES : 8   ← 与项目原结�
 物理    : 末时刻 SX=-5.29e7 Pa ≈ E × 应变(1.7e-3) —— 仍处弹性段，未到屈服，
           PLASTIC WORK=0 是模型 8 cycles 设定的预期行为，非适配问题
 ```
+
+---
+
+## 15. 多单元版本：单轴压缩（2026-09-30）
+
+### 15.1 为什么做这个
+
+第 13、14 节的两个算例都是项目自带的**单砖**（1 个单元、8 个节点）接口验证模型。
+它在 HyperView 里能显示、能选应力结果，但**整个模型只有一个应力值**——云图是单一颜色，
+看不出分布。
+
+本节用同一套材料、同一套边界条件，只把网格细化，让应力和塑性应变的**空间分布**可见。
+
+### 15.2 与项目原算例的关系
+
+**完全沿用**（逐项来自 `examples/userlib/kf_law99/test/kf_law99_0000.rad`）：
+
+| 项 | 值 |
+|---|---|
+| 几何 | 单位立方体，x∈[0,1]、y∈[0,1]、z∈[0,−1] |
+| 材料 | `/MAT/USER02`，KF 示例参数卡**逐字照抄** |
+| 边界 | 右端面（x=1）固定 X 位移；左端面（x=0）自由 |
+| 加载 | 左端面施加 +X 速度，幅值 1（单位函数） |
+| 时间 | t_end = 0.002 → 轴向应变 = v·t/L = 0.002 |
+| 求解设置 | `/DEF_SOLID ISTRAIN=2`、`/PROP/TYPE14`、`/SHFRA/V4` 均照抄 |
+
+**唯一改动**：网格由 1 个单元细化为 **10×4×4 = 160 个单元**（275 节点），
+dx=0.1、dy=dz=0.25。网格尺寸和输出频率由生成器顶部常量控制。
+
+> ⚠️ 因此**网格不是项目原设定**——单元尺寸是我定的。KF 损伤尚无特征长度/断裂能正则化
+> （原指南第 10 节），软化段结果会依赖网格。本算例目前仍在弹性段（PLAS=0），暂不受此影响。
+
+### 15.3 用法
+
+```bat
+run_kf_axial.bat
+```
+
+一键：生成 deck → 编译 KF 库 → Starter → Engine。结果全部写在项目内
+`build_local\view_kf_axial\`。
+
+**HyperView 打开：**
+
+```text
+liruiw\build_local\view_kf_axial\kf_axialA001
+```
+
+10 帧，读取器选 `RADIOSS (A) Result Reader`。可看的结果：
+`Stress`（张量，可展开 SX/SY/SZ/…）、`Von Mises`、`Plastic Strain`、`Density`、`Displacement`。
+
+改网格密度或输出频率：编辑 `view_kf_axial/make_deck.py` 顶部常量后重跑。
+
+### 15.4 实测结果（2026-09-30）
+
+```text
+Starter : 0 ERROR(S)
+Engine  : NORMAL TERMINATION，TOTAL NUMBER OF CYCLES : 75
+          （单砖版是 8 cycles；单元小了 10 倍，时间步也小 10 倍，符合预期）
+产物    : 10 帧动画 + kf_axial.h3d（含 User Var 1..8）
+```
+
+**沿 X 的轴向应力 SX（Pa）——这才是单砖版看不到的东西：**
+
+| 时刻 | x=0.05 | x=0.15 | x=0.45 | x=0.65 | x=0.95 |
+|---|---|---|---|---|---|
+| 4.04e-4 | −1.66e7 | −1.58e7 | −1.70e7 | −1.50e7 | **−2.95e5** |
+| 1.02e-3 | −2.46e7 | −2.83e7 | −3.59e7 | −3.22e7 | −3.02e7 |
+| 1.80e-3 | −4.79e7 | −5.20e7 | −5.27e7 | −5.85e7 | **−7.01e7** |
+
+读法：
+
+- 早时刻（4.04e-4）**压缩波还没传到固定端**——x=0.95 处应力只有 −2.95e5，比别处小两个量级；
+  这正是 `/ANIM` 动画里能看出来的波前传播
+- 末时刻沿厚度形成**明显梯度**：加载端 −4.79e7、固定端 −7.01e7（固定端更高，因为反射叠加）
+- 量级与解析值 `E×应变 = 3.1e10 × 1.803e-3 = 5.59e7` 一致（动态效应造成上下散布）
+- 横向应力 SY=SZ=+2.22e6，来自泊松效应
+
+**塑性应变 PLAS = 0**（全部单元、所有时刻）——与单砖版一致：轴向应变 1.8e-3 远低于
+屈服应变 `fc/E = 1e8/3.1e10 = 3.2e-3`，整个加载过程都还在弹性段。
+
+### 15.5 文件
+
+| 文件 | 说明 |
+|---|---|
+| `view_kf_axial/make_deck.py` | deck 生成器（网格/载荷/输出频率的常量都在顶部） |
+| `view_kf_axial/kf_axial_0000.rad` | 生成的 starter deck |
+| `view_kf_axial/kf_axial_0001.rad` | 生成的 engine deck（ANIM + H3D 输出） |
+| `run_kf_axial.bat` | 一键运行 |

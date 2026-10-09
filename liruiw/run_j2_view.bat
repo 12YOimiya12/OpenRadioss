@@ -5,7 +5,10 @@ rem  post-processing output enabled, so the results can be opened in HyperView.
 rem
 rem  Uses view_j2\law99_j2_0000.rad (byte-identical copy of the project's
 rem  starter deck) and view_j2\law99_j2_0001.rad (the project's engine deck plus
-rem  /ANIM/VECT/DIS and /H3D cards).  Model and material are unchanged.
+rem  /ANIM/VECT/DIS, stress and /H3D cards).  Model and material are unchanged.
+rem
+rem  All results are written inside the project (build_local\view_j2).  The
+rem  project folder name is ASCII, so HyperView can open them directly.
 rem
 rem  Pure ASCII on purpose (cmd.exe reads .bat in the OEM codepage).
 rem  Run from cmd.exe or by double-clicking, not from Git Bash.
@@ -16,11 +19,6 @@ cd /d "%~dp0"
 rem  ---- CONFIG - edit these when moving to a new machine --------------------
 if not defined KF_MINGW set "KF_MINGW=G:\x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev0\mingw64"
 if not defined KF_REPO  set "KF_REPO=%~dp0.."
-if not defined HW14_HOME set "HW14_HOME=G:\Program Files\hyperwork"
-rem  HyperWorks 14 (2015) mishandles non-ASCII paths - it fails to load results
-rem  that live under a folder whose name has Chinese characters.  Results are
-rem  therefore mirrored to this ASCII-only folder for viewing.
-if not defined KF_VIEW_OUT set "KF_VIEW_OUT=%USERPROFILE%\j2_view_out"
 rem  -------------------------------------------------------------------------
 
 for %%I in ("%KF_REPO%") do set "REPO=%%~fI"
@@ -46,7 +44,7 @@ set "DLL=%DLLDIR%\libraduser_win64.dll"
 set "RUN=%OUT%\view_j2"
 
 echo ============================================================
-echo  Step 1/4  Build J2 LAW99 user library
+echo  Step 1/3  Build J2 LAW99 user library
 echo ============================================================
 if not exist "%DLL%" (
   cmake -S "%KFSRC%" -B "%DLLDIR%" -G Ninja -DCMAKE_MAKE_PROGRAM="%NINJA%" -DCMAKE_BUILD_TYPE=Release
@@ -69,7 +67,7 @@ del /q law99_j2A* law99_j2.h3d law99_j2T01 2>nul
 
 echo.
 echo ============================================================
-echo  Step 2/4  Starter
+echo  Step 2/3  Starter
 echo ============================================================
 "%REPO%\exec\starter_win64_gf.exe" -i law99_j2_0000.rad -dylib "%DLL%" > starter.log 2>&1
 echo STARTER_EXIT=%errorlevel%
@@ -80,26 +78,16 @@ if not exist law99_j2_0000_0001.rst (
 
 echo.
 echo ============================================================
-echo  Step 3/4  Engine
+echo  Step 3/3  Engine
 echo ============================================================
 "%REPO%\exec\engine_win64_gf.exe" -i law99_j2_0001.rad -dylib "%DLL%" -nthread 2 > engine.log 2>&1
 echo ENGINE_EXIT=%errorlevel%
 
 echo.
-echo ============================================================
-echo  Step 4/4  Mirror results to an ASCII-only path
-echo ============================================================
-if not exist "%KF_VIEW_OUT%" mkdir "%KF_VIEW_OUT%"
-copy /y law99_j2A* "%KF_VIEW_OUT%" >nul
-copy /y law99_j2.h3d "%KF_VIEW_OUT%" >nul 2>&1
-copy /y law99_j2T01 "%KF_VIEW_OUT%" >nul 2>&1
-echo Mirrored to: %KF_VIEW_OUT%
-
-echo.
 echo  Run dir   : %RUN%
-echo  OPEN THIS : %KF_VIEW_OUT%\law99_j2A001
+echo  OPEN THIS : %RUN%\law99_j2A001
 echo              (HyperView: File ^> Open ^> Results; pick RADIOSS (A) Result Reader)
-echo  H3D       : law99_j2.h3d (needs a newer HyperWorks; v24 format)
+echo  H3D       : %RUN%\law99_j2.h3d (needs a newer HyperWorks; v24 format)
 echo  Logs      : %RUN%\starter.log / engine.log
 
 :done

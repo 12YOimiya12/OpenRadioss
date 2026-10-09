@@ -1,0 +1,30 @@
+[16:38:34] [INFO] svg_editor: running at http://127.0.0.1:6060 (live preview (auto-startup))
+[16:38:34] [INFO] svg_editor: project: G:\Postgraduate_Researching\openSource_soft\OpenRadioss\projects\OpenRadioss_Group_Meeting_20261008
+[16:38:34] [INFO] svg_editor: svg_output: G:\Postgraduate_Researching\openSource_soft\OpenRadioss\projects\OpenRadioss_Group_Meeting_20261008\svg_output (0 slides)
+[16:38:34] [INFO] svg_editor: idle timeout: 7200s (0 = disabled)
+ * Serving Flask app 'server'
+ * Debug mode: off
+[16:38:34] [INFO] svg_editor: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:6060
+[16:38:34] [INFO] svg_editor: [33mPress CTRL+C to quit[0m
+[16:38:35] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:38:35] "GET /api/health HTTP/1.1" 200 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "[36mGET / HTTP/1.1[0m" 304 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "[36mGET /static/app.js HTTP/1.1[0m" 304 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "GET /api/config HTTP/1.1" 200 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[16:39:28] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:28] "GET /api/slides HTTP/1.1" 200 -
+[16:39:30] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:30] "GET /api/slides HTTP/1.1" 200 -
+[16:39:32] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:32] "GET /api/slides HTTP/1.1" 200 -
+[16:39:34] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:34] "GET /api/slides HTTP/1.1" 200 -
+[16:39:36] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:36] "GET /api/slides HTTP/1.1" 200 -
+[16:39:36] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:36] "GET /api/slide/01_cover.svg HTTP/1.1" 200 -
+[16:39:37] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:37] "GET /api/slide/02_progress_map.svg HTTP/1.1" 200 -
+[16:39:38] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:38] "GET /api/slides HTTP/1.1" 200 -
+[16:39:40] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:40] "GET /api/slides HTTP/1.1" 200 -
+[16:39:42] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:42] "GET /api/slides HTTP/1.1" 200 -
+[16:39:42] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:42] "GET /api/slide/05_kf_law99_interface.svg HTTP/1.1" 200 -
+[16:39:42] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:42] "GET /api/slide/04_engineering_cases.svg HTTP/1.1" 200 -
+[16:39:43] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:43] "GET /api/slide/03_solver_build.svg HTTP/1.1" 200 -
+[16:39:44] [INFO] svg_editor: 127.0.0.1 - - [08/Oct/2026 16:39:44] "GET /api/slides HTTP/1.1" 200 -
+[18:39:45] [INFO] svg_editor: idle for 7200s, shutting down

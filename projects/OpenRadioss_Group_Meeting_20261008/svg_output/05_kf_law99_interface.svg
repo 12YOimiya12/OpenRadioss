@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">KF LAW99 动态用户本构接入</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="material-routing" data-pptx-bounds="86 176 1130 205">
+    <text x="92" y="214" font-size="24" font-weight="bold" fill="#4285F4">材料卡</text>
+    <rect x="92" y="240" width="264" height="96" rx="8" fill="#E8F0FE"/>
+    <text x="224" y="280" text-anchor="middle" font-size="32" font-weight="bold" fill="#202124">/MAT/USER02</text>
+    <text x="224" y="314" text-anchor="middle" font-size="24" fill="#5F6368">IUSER = 2</text>
+    <path d="M364 289 C420 284 458 295 516 289" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+    <text x="532" y="214" font-size="24" font-weight="bold" fill="#4285F4">求解器映射</text>
+    <rect x="532" y="240" width="264" height="96" rx="8" fill="#F8F9FA"/>
+    <text x="664" y="280" text-anchor="middle" font-size="32" font-weight="bold" fill="#202124">ILAW = 99</text>
+    <text x="664" y="314" text-anchor="middle" font-size="24" fill="#5F6368">LAW99 入口</text>
+    <path d="M804 289 C860 284 900 295 956 289" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="972" y="214" font-size="24" font-weight="bold" fill="#34A853">动态用户库</text>
+    <rect x="972" y="240" width="214" height="96" rx="8" fill="#DDF2E4"/>
+    <text x="1079" y="280" text-anchor="middle" font-size="32" font-weight="bold" fill="#202124">KF 模型</text>
+    <text x="1079" y="314" text-anchor="middle" font-size="24" fill="#5F6368">25 参数 · 8 状态变量</text>
+  </g>
+  <g id="migration" data-pptx-bounds="90 420 1130 224">
+    <text x="96" y="462" font-size="24" font-weight="bold" fill="#202124">从开发机迁移到本机 MinGW gfortran</text>
+    <path d="M98 485 C328 478 538 492 774 484" fill="none" stroke="#DADCE0" stroke-width="3"/>
+    <text x="100" y="540" font-size="24" fill="#5F6368">原环境</text><text x="100" y="578" font-size="32" font-weight="bold" fill="#202124">MSVC / VS2022</text>
+    <path d="M374 550 C468 542 550 560 646 550" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="674" y="540" font-size="24" fill="#5F6368">本机</text><text x="674" y="578" font-size="32" font-weight="bold" fill="#202124">MinGW-w64 / gfortran</text>
+    <text x="96" y="632" font-size="24" fill="#34A853">改动范围小：无需重编译求解器，也无需改项目源码或测试卡。</text>
+  </g>
+</svg>

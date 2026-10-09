@@ -1,0 +1,1 @@
+OpenRadioss 的 Python/Tk 图形界面可以选择 .rad、.k 或 .inp 算例，设置线程数和 MPI 进程，提交任务并管理运行队列，也提供动画转 VTK、时程转 CSV 等结果转换选项。求解完成后，当前 HyperWorks 14 可通过 RADIOSS A 文件读取器查看动画结果。多单元轴压模型已输出应力张量、Von Mises 等结果，可在 HyperView 中分析 SX、SY、SZ 等分量并查看空间应力梯度和应力云图。H3D writer 输出 v24，当前 HW14 无法读取；较新版本才可查看 KF 的损伤、孔隙率和压力等内部变量。

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect id="page-background" data-pptx-role="background" width="1280" height="720" fill="#FFFFFF"/>
+  <g id="page-heading" data-pptx-bounds="70 38 1130 98">
+    <text x="72" y="86" font-size="56" font-weight="bold" fill="#202124">动画与 H3D 后处理兼容性</text>
+    <path d="M76 106 C260 100 420 111 594 104" fill="none" stroke="#4285F4" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g id="animation-path" data-pptx-bounds="82 170 514 360">
+    <text x="88" y="214" font-size="32" font-weight="bold" fill="#34A853">RADIOSS A 动画</text>
+    <text x="88" y="266" font-size="24" fill="#202124">HyperWorks 14 注册 A 文件读取器</text>
+    <text x="88" y="312" font-size="24" fill="#202124">A001—A008：示例共 8 帧</text>
+    <path d="M90 340 C216 334 390 347 558 339" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+    <text x="90" y="392" font-size="24" fill="#202124">当前可查看位移、坐标、</text>
+    <text x="90" y="434" font-size="24" fill="#202124">应力 / 应变与等效塑性应变</text>
+    <text x="90" y="496" font-size="24" font-weight="bold" fill="#34A853">本机可用路径</text>
+  </g>
+  <g id="h3d-path" data-pptx-bounds="674 170 524 360">
+    <text x="680" y="214" font-size="32" font-weight="bold" fill="#4285F4">H3D 结果</text>
+    <text x="680" y="266" font-size="24" fill="#202124">当前 writer 输出 H3D v24</text>
+    <text x="680" y="312" font-size="24" fill="#202124">HyperWorks 14 reader 无法读取</text>
+    <path d="M682 340 C820 334 990 347 1158 339" fill="none" stroke="#FBBC05" stroke-width="4" stroke-linecap="round"/>
+    <text x="682" y="392" font-size="24" fill="#202124">较新 HyperWorks 才能查看 KF UVAR</text>
+    <text x="682" y="434" font-size="24" fill="#5F6368">损伤、孔隙率、压力等内部变量</text>
+    <text x="682" y="496" font-size="24" font-weight="bold" fill="#202124">版本限制，不是求解失败</text>
+  </g>
+  <g id="processable-cases" data-pptx-bounds="88 570 1098 88">
+    <text x="92" y="610" font-size="24" font-weight="bold" fill="#202124">可后处理算例</text>
+    <text x="306" y="610" font-size="24" fill="#5F6368">KF 单砖　·　J2 基线　·　KF 多单元轴压</text>
+    <text x="92" y="650" font-size="22" fill="#5F6368">RADIOSS 动画支持当前环境；H3D 保留为新版本查看能力。</text>
+  </g>
+</svg>
