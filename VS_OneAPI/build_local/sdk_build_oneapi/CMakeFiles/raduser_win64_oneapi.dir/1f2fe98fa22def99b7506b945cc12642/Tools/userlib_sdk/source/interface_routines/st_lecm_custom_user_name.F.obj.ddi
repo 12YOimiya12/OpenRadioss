@@ -1,0 +1,21 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\1f2fe98fa22def99b7506b945cc12642\\\\Tools\\\\userlib_sdk\\\\source\\\\interface_routines\\\\st_lecm_custom_user_name.F.obj",
+			"provides" : [],
+			"requires" : 
+			[
+				{
+					"logical-name" : "law_user.mod"
+				},
+				{
+					"logical-name" : "st_ulaw.mod"
+				}
+			]
+		}
+	],
+	"version" : 0
+}

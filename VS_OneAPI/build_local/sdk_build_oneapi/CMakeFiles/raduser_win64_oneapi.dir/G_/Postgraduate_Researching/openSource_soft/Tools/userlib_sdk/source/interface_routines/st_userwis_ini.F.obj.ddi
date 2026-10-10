@@ -1,0 +1,13 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\G_\\\\Postgraduate_Researching\\\\openSource_soft\\\\Tools\\\\userlib_sdk\\\\source\\\\interface_routines\\\\st_userwis_ini.F.obj",
+			"provides" : [],
+			"requires" : []
+		}
+	],
+	"version" : 0
+}

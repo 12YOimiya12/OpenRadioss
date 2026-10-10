@@ -1,0 +1,25 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\G_\\\\Postgraduate_Researching\\\\openSource_soft\\\\Tools\\\\userlib_sdk\\\\source\\\\modules\\\\uintbuf_var.F.obj",
+			"provides" : 
+			[
+				{
+					"compiled-module-path" : "uintbuf_use_mod.mod",
+					"is-interface" : true,
+					"logical-name" : "uintbuf_use_mod.mod"
+				}
+			],
+			"requires" : 
+			[
+				{
+					"logical-name" : "uintbuf_mod.mod"
+				}
+			]
+		}
+	],
+	"version" : 0
+}

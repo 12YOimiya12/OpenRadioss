@@ -1,0 +1,47 @@
+{
+	"modules" : 
+	{
+		"law_user.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/law_user.mod",
+			"is-private" : false
+		},
+		"law_usersh.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/law_usersh.mod",
+			"is-private" : false
+		},
+		"law_usersh_var.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/law_usersh_var.mod",
+			"is-private" : false
+		},
+		"law_userso.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/law_userso.mod",
+			"is-private" : false
+		},
+		"law_userso_var.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/law_userso_var.mod",
+			"is-private" : false
+		},
+		"st_ulaw.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/st_ulaw.mod",
+			"is-private" : false
+		},
+		"uintbuf_mod.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/uintbuf_mod.mod",
+			"is-private" : false
+		},
+		"uintbuf_use_mod.mod" : 
+		{
+			"bmi" : "G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/uintbuf_use_mod.mod",
+			"is-private" : false
+		}
+	},
+	"references" : {},
+	"usages" : {}
+}

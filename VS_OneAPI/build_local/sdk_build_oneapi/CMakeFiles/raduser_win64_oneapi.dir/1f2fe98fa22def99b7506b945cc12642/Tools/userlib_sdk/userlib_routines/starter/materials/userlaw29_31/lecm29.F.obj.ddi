@@ -1,0 +1,13 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\1f2fe98fa22def99b7506b945cc12642\\\\Tools\\\\userlib_sdk\\\\userlib_routines\\\\starter\\\\materials\\\\userlaw29_31\\\\lecm29.F.obj",
+			"provides" : [],
+			"requires" : []
+		}
+	],
+	"version" : 0
+}

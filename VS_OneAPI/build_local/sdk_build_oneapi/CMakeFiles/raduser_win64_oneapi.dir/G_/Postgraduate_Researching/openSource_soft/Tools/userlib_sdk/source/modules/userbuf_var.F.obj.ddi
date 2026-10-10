@@ -1,0 +1,25 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\G_\\\\Postgraduate_Researching\\\\openSource_soft\\\\Tools\\\\userlib_sdk\\\\source\\\\modules\\\\userbuf_var.F.obj",
+			"provides" : 
+			[
+				{
+					"compiled-module-path" : "st_ulaw.mod",
+					"is-interface" : true,
+					"logical-name" : "st_ulaw.mod"
+				}
+			],
+			"requires" : 
+			[
+				{
+					"logical-name" : "law_user.mod"
+				}
+			]
+		}
+	],
+	"version" : 0
+}

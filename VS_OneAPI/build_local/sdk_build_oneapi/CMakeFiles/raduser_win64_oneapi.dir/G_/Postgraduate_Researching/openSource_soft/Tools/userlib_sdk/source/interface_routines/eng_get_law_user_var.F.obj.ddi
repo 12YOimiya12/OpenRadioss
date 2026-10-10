@@ -1,0 +1,18 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\G_\\\\Postgraduate_Researching\\\\openSource_soft\\\\Tools\\\\userlib_sdk\\\\source\\\\interface_routines\\\\eng_get_law_user_var.F.obj",
+			"provides" : [],
+			"requires" : 
+			[
+				{
+					"logical-name" : "law_userso_var.mod"
+				}
+			]
+		}
+	],
+	"version" : 0
+}

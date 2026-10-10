@@ -1,0 +1,308 @@
+ stone_kf_0001.out
+************************************************************************
+**                                                                    **
+**                                                                    **
+**                         OpenRadioss Engine                         **
+**                                                                    **
+**            Non-linear Finite Element Analysis Software             **
+**                                                                    **
+**                                                                    **
+**                                                                    **
+**                  Windows 64 bits, Intel compiler                   **
+**                      Double Precision Version                      **
+**                                                                    **
+**                                                                    **
+**                                                                    **
+************************************************************************
+** OpenRadioss Software                                               **
+** COPYRIGHT (C) 2026 Siemens                                         **
+** Licensed under GNU Affero General Public License.                  **
+** See License file.                                                  **
+************************************************************************
+ 
+ NUMBER OF SPMD DOMAINS           1
+ NUMBER OF THREADS PER DOMAIN     2
+ NUMBER OF HMPP PROCESSES         2
+  
+ COMPUTATION HARDWARE DESCRIPTION
+  
+ HOSTNAME     CPU TYPE, FREQUENCY AND MEMORY
+ umiya   AMD Ryzen 7 H 260 w/ Radeon 780M Graphics        (x86_64), 3800 MHz,   3083 MB RAM,  31322 MB swap
+  
+ STACKSIZE  . . . . . . . . . . . . . . . . . . . . 1430 MB
+ THREAD STACKSIZE . . . . . . . . . . . . . . . . . 0 MB
+ 
+************************************************************************
+
+
+ stone_kfD01                                                                     
+
+
+
+ EXTERNAL LIBRARY FOR USERS CODE INTERFACE  
+ LIBRARY NAME  . . . . . . . . . . . . . . . . . . . . G:\Postgraduate_Researching\openSource_soft\OpenRadioss\VS_OneAPI\build_local\userlib_oneapi\libraduser_win64.dll
+ RADIOSS USERS CODE INTERFACE VERSION  . . . . . . . .2102011230
+
+
+ FINAL TIME . . . . . . . . . . . . . . . . . . .  0.2000000E-02
+
+ TIME INTERVAL FOR TIME HISTORY PLOTS . . . . . .  0.2000000E-03
+
+ TIME STEP SCALE FACTOR . . . . . . . . . . . . .  0.5000000    
+
+ MINIMUM TIME STEP  . . . . . . . . . . . . . . .   0.000000    
+
+
+ BRICK TIME STEP SCALE FACTOR . . . . . . . . . .  0.5000000    
+ BRICK MINIMUM TIME STEP. . . . . . . . . . . . .   0.000000    
+ MIN. TIME STEP FLAG (1:STOP RUN, 2:DELETE BRICK)     1
+
+ QUAD TIME STEP SCALE FACTOR. . . . . . . . . . .  0.5000000    
+ QUAD MINIMUM TIME STEP . . . . . . . . . . . . .   0.000000    
+ MIN. TIME STEP FLAG (1:STOP RUN, 2:DELETE QUAD).     1
+
+ SHELL TIME STEP SCALE FACTOR . . . . . . . . . .  0.5000000    
+ SHELL MINIMUM TIME STEP. . . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG (1:STOP, 2:DELETE, 3:SMALL STRAIN)    2
+
+ TRUSS TIME STEP SCALE FACTOR . . . . . . . . . .  0.5000000    
+ TRUSS MINIMUM TIME STEP. . . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG (1:STOP, 2:DELETE). . . . . . . .     0
+
+ BEAM TIME STEP SCALE FACTOR. . . . . . . . . . .  0.5000000    
+ BEAM MINIMUM TIME STEP . . . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG (1:STOP, 2:DELETE). . . . . . . .     0
+
+ SPRING TIME STEP SCALE FACTOR. . . . . . . . . .  0.5000000    
+ SPRING MINIMUM TIME STEP . . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG (1:STOP, 2:DELETE). . . . . . . .     0
+
+ AIRBAG TIME STEP SCALE FACTOR. . . . . . . . . .  0.5000000    
+ AIRBAG MINIMUM TIME STEP . . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG (1:STOP). . . . . . . . . . . . .     0
+
+ CONTACT TIME STEP SCALE FACTOR . . . . . . . . .  0.5000000    
+ CONTACT MINIMUM TIME STEP. . . . . . . . . . . .   0.000000    
+ MIN. TIME FLAG(1:STOP, 2:REMOVE NODE FROM INTERF)    0
+
+ PRINTOUT CYCLE FREQUENCY . . . . . . . . . . . .   -10
+
+ RESTART CYCLE FREQUENCY. . . . . . . . . . . . .   10000000
+
+ MAXIMUM RESTART WRITE BEFORE OVERWRITE . . . . .     0
+
+ INVERS: INPUT DECK VERSION . . . . . . . . . . .  2019
+ ITTYP : FLAG FOR TYPE OF T-FILE. . . . . . . . .     4
+
+ INITIAL TIME STEP. . . . . . . . . . . . . . . .   0.000000    
+ MAXIMUM TIME STEP. . . . . . . . . . . . . . . .  0.1000000E+21
+
+ PARALLEL ARITHMETIC ON
+ NUMBER OF INTERFACES TO BE ELIMINATED. . . . . .        0
+
+ NUMBER OF PARTS TO BE ELIMINATED . . . . . . . .        0
+
+ NUMBER OF SOLID  ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF QUAD   ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF SHELL  ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF TRUSS  ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF BEAM   ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF SPRING ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF SH_3N  ELEMENT BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF  SPH PARTICLES BLOCKS TO BE ELIMINATED        0
+
+ NUMBER OF RIGID LINKS. . . . . . . . . . . . . .        0
+
+ NUMBER OF NEW BOUNDARY CONDITIONS. . . . . . . .        0
+
+
+ TIME FOR FIRST ANIMATION-FILE PLOT . . . . . . .   0.000000    
+ TIME INTERVAL FOR ANIMATION-FILE PLOTS . . . . .  0.2000000E-03
+ TIME TO STOP ANIMATION-FILE PLOTS. . . . . . . .  0.1000000E+21
+ SENSOR FOR ANIMATION-FILE PLOTS. . . . . . . . .          0
+ TIME INTERVAL FOR SENSOR ANIMATION-FILE PLOTS. .   0.000000    
+
+ VARIABLE SAVED ON ANIMATION FILES (1: YES) :
+      PLASTIC STRAIN. . . . . .     1
+      DENSITY     (SOLID ONLY).     0
+      SPECIFIC ENERGY . . . . .     0
+      HOURGLASS ENERGY. . . . .     0
+      TEMPERATURE (SOLID ONLY).     0
+      THICKNESS   (SHELL ONLY).     0
+      PRESSURE    (SOLID ONLY).     0
+      VON MISES . . . . . . . .     1
+      TURBULENT ENERGY (FLUID).     0
+      TURBULENT VISCOSITY(FLUID)    0
+      VORTICITY (FLUID) . . . .     0
+ NODAL VALUES SAVED ON ANIMATION FILES (1: YES) :
+      PRESSURE. . . . . . . . .     0
+      DENSITY . . . . . . . . .     0
+      TEMPERATURE . . . . . . .     0
+ VECTOR SAVED ON ANIMATION FILES (1: YES) :
+      VELOCITY VECTOR . . . . .     0
+      DISPLACEMENT VECTOR . . .     1
+      ACCELERATION VECTOR . . .     0
+      CONTACT FORCES. . . . . .     0
+      INTERNAL FORCES . . . . .     0
+      EXTERNAL FORCES . . . . .     0
+      SECTION RBY RWALL FORCES.     0
+      ROTATIONAL VELOCITY VECTOR    0
+      CONTACT PRESSURE (VECTORS)    0
+ SHELL TENSOR SAVED ON ANIMATION FILES (1: YES) :
+      MEMBRANE STRESS . . . . .     0
+      BENDING STRESS(MOMENT/T^2)    0
+      UPPER LAYER STRESS. . . .     0
+      LOWER LAYER STRESS. . . .     0
+      MEMBRANE STRAIN . . . . .     0
+      CURVATURE . . . . . . . .     0
+      UPPER LAYER STRAIN. . . .     0
+      LOWER LAYER STRAIN. . . .     0
+ NODAL MASS SAVED ON ANIMATION FILES (1: YES) :    0
+ KEEP DELETED ELEMENT (1: YES) :    0
+
+
+
+     H3D OUTPUT TIME  . . . . . . . . . . . . . . .=  0.0000    
+     H3D TIME INTERVAL. . . . . . . . . . . . . . .= 2.00000E-04
+     H3D COMPRESSION LEVEL. . . . . . . . . . . . .= STANDARD  
+
+        |
+        |----SOLID SCALAR : 
+        |    Plastic Strain
+        |
+        |----SOLID SCALAR : 
+        |    Von Mises
+        |
+        |----SOLID SCALAR : 
+        |    Density
+        |
+        |----SOLID TENSOR : 
+        |    Stress
+        |
+        |----SOLID SCALAR : 
+        |    User Var
+        |        UVAR=           5
+        |
+        |----SOLID SCALAR : 
+        |    User Var
+        |        UVAR=           9
+        |
+        |----SOLID SCALAR : 
+        |    User Var
+        |        UVAR=          10
+        |
+        |----SOLID SCALAR : 
+        |    User Var
+        |        UVAR=          12
+        |
+  
+  
+ 10/10/2026
+   CYCLE    TIME      TIME-STEP  ELEMENT          ERROR  I-ENERGY    K-ENERGY T  K-ENERGY R  EXT-WORK     MAS.ERR     TOTAL MASS  MASS ADDED
+       0   0.000      0.1417E-03 SOLID          1   0.0%   0.000       0.000       0.000       0.000       0.000       2500.       0.000    
+     ANIMATION FILE: stone_kfA001 WRITTEN
+
+
+    ------------------------------------------------------------
+      H3D LIBRARY VERSION: 2612.0
+    ------------------------------------------------------------
+
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     1 , NC=       0 , TIME=   0.000    
+     ANIMATION FILE: stone_kfA002 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     2 , NC=       2 , TIME=  0.2834E-03
+     ANIMATION FILE: stone_kfA003 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     3 , NC=       3 , TIME=  0.4251E-03
+     ANIMATION FILE: stone_kfA004 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     4 , NC=       5 , TIME=  0.7084E-03
+     ANIMATION FILE: stone_kfA005 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     5 , NC=       6 , TIME=  0.8501E-03
+     ANIMATION FILE: stone_kfA006 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     6 , NC=       8 , TIME=  0.1133E-02
+     ANIMATION FILE: stone_kfA007 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     7 , NC=       9 , TIME=  0.1275E-02
+      10  0.1416E-02  0.1415E-03 SOLID          1   0.0%  0.2782E+05   759.3       0.000      0.2857E+05   0.000       2500.       0.000    
+     ANIMATION FILE: stone_kfA008 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     8 , NC=      10 , TIME=  0.1416E-02
+     ANIMATION FILE: stone_kfA009 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=     9 , NC=      12 , TIME=  0.1699E-02
+     ANIMATION FILE: stone_kfA010 WRITTEN
+     H3D FILE: stone_kf.h3d UPDATED:  FRAME=    10 , NC=      13 , TIME=  0.1841E-02
+
+     RESTART FILES: stone_kf_0001_[0001-0001].rst WRITTEN
+     -------------
+
+  
+                           ** CPU USER TIME **
+  
+  
+                        ** SUMMARY **
+  
+ #PROC  ELEMENT   KINCOND   INTEG     IO        T0        ASM       RESOL    
+   1   .0000E+00 .0000E+00 .0000E+00 .0000E+00 .0000E+00 .0000E+00 .3125E-01
+  
+ 
+                   ** CUMULATIVE CPU TIME SUMMARY **
+  
+ CONTACT SORTING.............: .0000E+00     0.00 % 
+ CONTACT FORCES..............: .0000E+00     0.00 % 
+ ELEMENT FORCES..............: .0000E+00     0.00 % 
+ KINEMATIC COND..............: .0000E+00     0.00 % 
+ INTEGRATION.................: .0000E+00     0.00 % 
+ ASSEMBLING..................: .0000E+00     0.00 % 
+ OTHERS (including I/O)......: .3125E-01   100.00 % 
+ TOTAL.......................: .3125E-01   100.00 % 
+  
+  
+                           ** ELAPSED TIME **
+  
+  
+                        ** SUMMARY **
+  
+ #PROC  ELEMENT   KINCOND   INTEG     IO        T0        ASM       RESOL    
+   1   .6000E-02 .0000E+00 .3000E-02 .1800E-01 .0000E+00 .9999E-03 .3200E-01
+  
+                   ** MEMORY USAGE STATISTICS **
+  
+ TOTAL MEMORY USED .........................:       40 MB
+ MAXIMUM MEMORY PER PROCESSOR...............:       40 MB
+ MINIMUM MEMORY PER PROCESSOR...............:       40 MB
+ AVERAGE MEMORY PER PROCESSOR...............:       40 MB
+  
+                   ** DISK USAGE STATISTICS **
+  
+ TOTAL DISK SPACE USED .....................:          0 MB
+ ANIMATION/H3D/TH/OUTP SIZE ................:          0 MB
+ RESTART FILE SIZE .........................:          0 MB
+  
+                   ** COMPUTE TIME INFORMATION **
+                        ** CURRENT ENGINE **
+  
+ EXECUTION STARTED .........................:      2026/10/10  19:16:42
+ EXECUTION COMPLETED .......................:      2026/10/10  19:16:42
+  
+ ELAPSED TIME     =          0.07 s
+                          0:00:00
+
+
+
+     NORMAL TERMINATION      
+
+
+
+     TOTAL NUMBER OF CYCLES  :      15
+
+  
+                   ** COMPUTE RUNTIME INFORMATION SUMMARY **
+  
+        STARTER RUNTIME =          0.85s (00:00:00)
+ # 001   ENGINE RUNTIME =          0.07s (00:00:00)
+ ------------------------------ 
+ STARTER+ENGINE RUNTIME =          0.91s (00:00:00)
+  

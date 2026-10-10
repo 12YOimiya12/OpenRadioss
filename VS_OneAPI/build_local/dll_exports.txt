@@ -1,0 +1,116 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file G:\Postgraduate_Researching\openSource_soft\OpenRadioss\VS_OneAPI\build_local\userlib_oneapi\libraduser_win64.dll
+
+File Type: DLL
+
+  Section contains the following exports for libraduser_win64.dll
+
+    00000000 characteristics
+    FFFFFFFF time date stamp
+        0.00 version
+           1 ordinal base
+          86 number of functions
+          86 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00001000 ENG_FLAW
+          2    1 000016D0 ENG_FLAWC
+          3    2 00001D70 ENG_GET_LAWC_USER_VAR
+          4    3 000024F0 ENG_GET_LAWC_USER_VAR.A
+          5    4 00001DB0 ENG_GET_LAWC_USER_VAR.L
+          6    5 00001D80 ENG_GET_LAWC_USER_VAR_2
+          7    6 00002FB0 ENG_GET_LAWC_USER_VAR_2.A
+          8    7 00002CB0 ENG_GET_LAWC_USER_VAR_2.L
+          9    8 00003850 ENG_GET_LAW_USER_VAR
+         10    9 00004050 ENG_GET_LAW_USER_VAR.A
+         11    A 00003890 ENG_GET_LAW_USER_VAR.L
+         12    B 00003870 ENG_GET_LAW_USER_VAR_2
+         13    C 00005850 ENG_GET_LAW_USER_VAR_2.A
+         14    D 00004CA0 ENG_GET_LAW_USER_VAR_2.L
+         15    E 000066E0 ENG_GET_UINTBUF_VAR
+         16    F 00006780 ENG_RUSER
+         17   10 00006DC0 ENG_RUSER.A
+         18   11 00006790 ENG_RUSER.L
+         19   12 00001D90 ENG_SET_LAWC_USER_VAR
+         20   13 000034A0 ENG_SET_LAWC_USER_VAR.A
+         21   14 000032B0 ENG_SET_LAWC_USER_VAR.L
+         22   15 00001DA0 ENG_SET_LAWC_USER_VAR_2
+         23   16 00003740 ENG_SET_LAWC_USER_VAR_2.A
+         24   17 000036B0 ENG_SET_LAWC_USER_VAR_2.L
+         25   18 00003860 ENG_SET_LAW_USER_VAR
+         26   19 00004A90 ENG_SET_LAW_USER_VAR.A
+         27   1A 000048A0 ENG_SET_LAW_USER_VAR.L
+         28   1B 00003880 ENG_SET_LAW_USER_VAR_2
+         29   1C 00006560 ENG_SET_LAW_USER_VAR_2.A
+         30   1D 00006450 ENG_SET_LAW_USER_VAR_2.L
+         31   1E 00007420 ENG_SIGEPS
+         32   1F 00007D10 ENG_SIGEPS99
+         33   20 0000DC30 ENG_SIGEPS99.A
+         34   21 00007D20 ENG_SIGEPS99.L
+         35   22 00013BD0 ENG_SIGEPS99C
+         36   23 0001A000 ENG_SIGEPS99C.A
+         37   24 00013BE0 ENG_SIGEPS99C.L
+         38   25 000204B0 ENG_SIGEPSC
+         39   26 00020DD0 ENG_SUSER
+         40   27 00022D70 ENG_SUSER.A
+         41   28 00020DE0 ENG_SUSER.L
+         42   29 00024D30 ENG_USERINT
+         43   2A 000250B0 ENG_USERINT.A
+         44   2B 00024D40 ENG_USERINT.L
+         45   2C 00025450 ENG_USERWI
+         46   2D 00025890 ENG_USERWI.A
+         47   2E 00025460 ENG_USERWI.L
+         48   2F 00025CF0 ENG_USER_SENS
+         49   30 000829E0 ST_GET_USERBUF_VAR
+         50   31 00082A20 ST_GET_USERBUF_VAR.A
+         51   32 000829F0 ST_GET_USERBUF_VAR.L
+         52   33 00082A70 ST_LECG
+         53   34 00082EB0 ST_LECG.A
+         54   35 00082A80 ST_LECG.L
+         55   36 00083310 ST_LECGUSER
+         56   37 000837F0 ST_LECGUSER.A
+         57   38 00083320 ST_LECGUSER.L
+         58   39 00083CF0 ST_LECM
+         59   3A 00084230 ST_LECM.A
+         60   3B 00083D00 ST_LECM.L
+         61   3C 00084790 ST_LECM99
+         62   3D 00087C80 ST_LECM99.A
+         63   3E 000847A0 ST_LECM99.L
+         64   3F 0008B190 ST_LECM_CUSTOM_USER_NAME
+         65   40 0008E680 ST_LECM_CUSTOM_USER_NAME.A
+         66   41 0008B1A0 ST_LECM_CUSTOM_USER_NAME.L
+         67   42 00091B90 ST_LECR
+         68   43 000920D0 ST_LECR.A
+         69   44 00091BA0 ST_LECR.L
+         70   45 00092630 ST_LECSEN
+         71   46 00092A30 ST_LECSEN.A
+         72   47 00092640 ST_LECSEN.L
+         73   48 00092E50 ST_RINIUSER
+         74   49 00093320 ST_RINIUSER.A
+         75   4A 00092E60 ST_RINIUSER.L
+         76   4B 00093810 ST_SINIUSR
+         77   4C 00094D20 ST_SINIUSR.A
+         78   4D 00093820 ST_SINIUSR.L
+         79   4E 00096250 ST_USERWIS
+         80   4F 000966F0 ST_USERWIS.A
+         81   50 00096260 ST_USERWIS.L
+         82   51 00096BC0 ST_USERWIS_INI
+         83   52 00097050 ST_USERWIS_INI.A
+         84   53 00096BD0 ST_USERWIS_INI.L
+         85   54 00027370 set_callback
+         86   55 00047B20 userlib_id
+
+  Summary
+
+     7414000 .data
+        1000 .fptable
+        5000 .pdata
+       57000 .rdata
+        2000 .reloc
+      121000 .text
+        1000 .trace
+        2000 _RDATA

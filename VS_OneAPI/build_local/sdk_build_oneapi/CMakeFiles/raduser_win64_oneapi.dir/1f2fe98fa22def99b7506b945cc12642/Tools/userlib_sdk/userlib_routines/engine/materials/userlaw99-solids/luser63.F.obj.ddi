@@ -1,0 +1,18 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\1f2fe98fa22def99b7506b945cc12642\\\\Tools\\\\userlib_sdk\\\\userlib_routines\\\\engine\\\\materials\\\\userlaw99-solids\\\\luser63.F.obj",
+			"provides" : [],
+			"requires" : 
+			[
+				{
+					"logical-name" : "law_userso.mod"
+				}
+			]
+		}
+	],
+	"version" : 0
+}

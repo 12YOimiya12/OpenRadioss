@@ -1,0 +1,13 @@
+{
+	"revision" : 0,
+	"rules" : 
+	[
+		{
+			"outputs" : [],
+			"primary-output" : "CMakeFiles\\\\raduser_win64_oneapi.dir\\\\403c742c92de8dc2ee4671d2c868ef9a\\\\userlib_sdk\\\\userlib_routines\\\\engine\\\\materials\\\\usrlaw29_31-solids\\\\sigeps31.F.obj",
+			"provides" : [],
+			"requires" : []
+		}
+	],
+	"version" : 0
+}

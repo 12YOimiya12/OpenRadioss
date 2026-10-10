@@ -1,0 +1,3 @@
+G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/CMakeFiles/raduser_win64_oneapi.dir
+G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/CMakeFiles/edit_cache.dir
+G:/Postgraduate_Researching/openSource_soft/OpenRadioss/VS_OneAPI/build_local/sdk_build_oneapi/CMakeFiles/rebuild_cache.dir
